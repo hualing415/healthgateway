@@ -22,4 +22,15 @@ describe('Landing Page', () => {
                            .should('have.attr', 'href', '/login')
                            .should('have.text', 'Log in')
     })
+
+    
+    it('Validate FooterLinks', () => {
+        cy.get('footer')
+        .find('.nav-link')
+        .should('be.visible')
+
+                           .should('have.attr', 'href', '/termsOfService')
+                           .should('have.text', 'Terms of Service')
+    })
+
 })
