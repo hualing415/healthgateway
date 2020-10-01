@@ -315,7 +315,10 @@ input {
                             <label for="deletionWarning">
                                 Account marked for removal
                             </label>
-                            <div id="deletionWarning">
+                            <div
+                                id="deletionWarning"
+                                data-testid="recoverAccountDiv"
+                            >
                                 Your account has been deactivated. If you wish
                                 to recover your account click on the "Recover
                                 Account" button before the time expires.
@@ -332,7 +335,7 @@ input {
                         <b-col>
                             <b-button
                                 id="recoverBtn"
-                                data-testid="recoverAccountCancelBtn"
+                                data-testid="recoverAccountBtn"
                                 class="mx-auto"
                                 variant="warning"
                                 @click="recoverAccount()"
