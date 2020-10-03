@@ -14,7 +14,7 @@ Cypress.Commands.add("login", (username, password, authMethod = AuthMethod.BCSC)
     if (authMethod == AuthMethod.BCSC)
     {
         cy.log(`Authenticating as BC Services Card user ${username}`) 
-        cy.get('#BCSCBtn').should('be.visible').should('have.text', 'BC Services Card').click()
+        cy.get('[data-testid=BCSCBtn]').should('be.visible').should('have.text', 'BC Services Card').click()
         cy.url().should('contains', 'https://idtest.gov.bc.ca/login/entry#start')
         cy.get('#tile_btn_virtual_device_div_id > h2').click()
         cy.get('#csn').click()
