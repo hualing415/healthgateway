@@ -59,7 +59,7 @@ namespace HealthGateway.UserManagedAccess.Controllers
         /// <param name="svc">The immunization data service.</param>
         /// <param name="httpContextAccessor">The Http Context accessor.</param>
         public UmaController(
-            ILogger<ImmunizationController> logger,
+            ILogger<UmaController> logger,
             IUmaService svc,
             IHttpContextAccessor httpContextAccessor)
         {
@@ -77,19 +77,18 @@ namespace HealthGateway.UserManagedAccess.Controllers
         /// <response code="401">The client must authenticate itself to get the requested response.</response>
         /// <response code="403">The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.</response>
         /// <response code="503">The service is unavailable for use.</response>
-        [HttpGet]
+        [HttpPost]
         [Produces("application/json")]
         [Route("{hdid}")]
-        [Authorize(Policy = ImmunizationPolicy.Read)]
         public async Task<IActionResult> CreateSharable(string hdid)
         {
             this.logger.LogDebug($"Getting immunizations from controller... {hdid}");
             ClaimsPrincipal user = this.httpContextAccessor.HttpContext.User;
             string accessToken = await this.httpContextAccessor.HttpContext.GetTokenAsync("access_token").ConfigureAwait(true);
-            RequestResult<IEnumerable<ImmunizationModel>> result = await this.service.GetImmunizations(accessToken).ConfigureAwait(true);
+            await this.service.CreateSharable(accessToken).ConfigureAwait(true);
 
-            this.logger.LogDebug($"Finished getting immunizations from controller... {hdid}");
-            return new JsonResult(result);
+            this.logger.LogDebug($"Finished creating sharable... {hdid}");
+            return new JsonResult("true");
         }
     }
 }

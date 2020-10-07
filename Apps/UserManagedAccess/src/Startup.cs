@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //-------------------------------------------------------------------------
-namespace HealthGateway.Immunization
+namespace HealthGateway.UserManagedAccess
 {
     using System.Diagnostics.CodeAnalysis;
     using HealthGateway.Common.AspNetConfiguration;
@@ -70,10 +70,10 @@ namespace HealthGateway.Immunization
             });
 
             // Add Services
-            services.AddTransient<IUserManagedAccess, UserManagedAccessService>();
+            services.AddTransient<IUmaService, UmaService>();
 
             // Add Keycloak delegates
-            //services.AddTransient<IImmunizationDelegate, RestImmunizationDelegate>();
+            services.AddTransient<IUmaDelegate, UmaRestDelegate>();
         }
 
         /// <summary>
