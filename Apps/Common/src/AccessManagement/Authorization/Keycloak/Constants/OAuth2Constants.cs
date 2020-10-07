@@ -15,110 +15,187 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak
 {
+    /// <summary> Keycloak's OAuth 2.0 constant values.</summary>
     public static class OAuth2Constants
     {
+        /// <summary>The code label.</summary>
+        public const string Code = "code";
 
-        public const string CODE = "code";
+        /// <summary>The client_id label.</summary>
+        public const string ClientId = "client_id";
 
-        public const string CLIENT_ID = "client_id";
+        /// <summary>The client_secret label.</summary>
+        public const string ClientSecret = "client_secret";
 
-        public const string CLIENT_SECRET = "client_secret";
+        /// <summary>The error label.</summary>
+        public const string Error = "error";
 
-        public const string ERROR = "error";
+        /// <summary>The error_description label.</summary>
+        public const string ErrorDescription = "error_description";
 
-        public const string ERROR_DESCRIPTION = "error_description";
+        /// <summary>The redirect_uri label.</summary>
+        public const string RedirectUri = "redirect_uri";
 
-        public const string REDIRECT_URI = "redirect_uri";
+        /// <summary>The display label.</summary>
+        public const string Display = "display";
 
-        public const string DISPLAY = "display";
+        /// <summary>The scope label.</summary>
+        public const string Scope = "scope";
 
-        public const string SCOPE = "scope";
+        /// <summary>The state label.</summary>
+        public const string State = "state";
 
-        public const string STATE = "state";
+        /// <summary>The grant_type label.</summary>
+        public const string GrantType = "grant_type";
 
-        public const string GRANT_TYPE = "grant_type";
+        /// <summary>The response_type label.</summary>
+        public const string ResponseType = "response_type";
 
-        public const string RESPONSE_TYPE = "response_type";
+        /// <summary>The access_token label.</summary>
+        public const string AccessToken = "access_token";
 
-        public const string ACCESS_TOKEN = "access_token";
+        /// <summary>The id_token label.</summary>
+        public const string IdToken = "id_token";
 
-        public const string ID_TOKEN = "id_token";
+        /// <summary>The refresh_token label.</summary>
+        public const string RefreshToken = "refresh_token";
 
-        public const string REFRESH_TOKEN = "refresh_token";
+        /// <summary>The logout_token label.</summary>
+        public const string LogoutToken = "logout_token";
 
-        public const string LOGOUT_TOKEN = "logout_token";
+        /// <summary>The authorization_code label.</summary>
+        public const string AuthorizationCode = "authorization_code";
 
-        public const string AUTHORIZATION_CODE = "authorization_code";
+        /// <summary>The implicit label.</summary>
+        public const string Implicit = "implicit";
 
+        /// <summary>The username label.</summary>
+        public const string Username = "username";
 
-        public const string IMPLICIT = "implicit";
+        /// <summary>The password label.</summary>
+        public const string Password = "password";
 
-        public const string USERNAME = "username";
+        /// <summary>The client_credentials label.</summary>
+        public const string ClientCredentials = "client_credentials";
 
-        public const string PASSWORD = "password";
+        /// <summary>The client_assertion_type label.
+        /// See https://tools.ietf.org/html/draft-ietf-oauth-assertions-01#page-5.</summary>
+        public const string ClientAssertionType = "client_assertion_type";
 
-        public const string CLIENT_CREDENTIALS = "client_credentials";
+        /// <summary>The client_assertion label.
+        /// See https://tools.ietf.org/html/draft-jones-oauth-jwt-bearer-03#section-2.2.</summary>
+        public const string ClientAssertion = "client_assertion";
 
-        // https://tools.ietf.org/html/draft-ietf-oauth-assertions-01#page-5
-        public const string CLIENT_ASSERTION_TYPE = "client_assertion_type";
-        public const string CLIENT_ASSERTION = "client_assertion";
+        /// <summary>The client_assertion_type JWT label.
+        /// See https://tools.ietf.org/html/draft-ietf-oauth-assertions-01#page-5.</summary>
+        public const string ClientAssertionTypeJwt = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
 
-        // https://tools.ietf.org/html/draft-jones-oauth-jwt-bearer-03#section-2.2
-        public const string CLIENT_ASSERTION_TYPE_JWT = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer";
+        /// <summary>The offline_access label.
+        /// See http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess.</summary>
+        public const string OfflineAccess = "offline_access";
 
-        // http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess
-        public const string OFFLINE_ACCESS = "offline_access";
+        /// <summary>The openid scope.
+        /// See http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest.</summary>
+        public const string ScopeOpenid = "openid";
 
-        // http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
-        public const string SCOPE_OPENID = "openid";
+        /// <summary>The profile scope.
+        /// See http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims.</summary>
+        public const string ScopeProfile = "profile";
 
-        // http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims
-        public const string SCOPE_PROFILE = "profile";
-        public const string SCOPE_EMAIL = "email";
-        public const string SCOPE_ADDRESS = "address";
-        public const string SCOPE_PHONE = "phone";
+        /// <summary>The email scope.
+        /// See http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims.</summary>
+        public const string ScopEmail = "email";
 
-        public const string UI_LOCALES_PARAM = "ui_locales";
+        /// <summary>The address scope.
+        /// See http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims.</summary>
+        public const string ScopeAddress = "address";
 
-        public const string PROMPT = "prompt";
-        public const string ACR_VALUES = "acr_values";
+        /// <summary>The phone scope.
+        /// See http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims.</summary>
+        public const string ScopePhone = "phone";
 
-        public const string MAX_AGE = "max_age";
+        /// <summary>The ui_locales label.</summary>
+        public const string UiLocalesParam = "ui_locales";
 
-        // OIDC Session Management
-        public const string SESSION_STATE = "session_state";
+        /// <summary>The prompt label.</summary>
+        public const string Prompt = "prompt";
 
-        public const string JWT = "JWT";
+        /// <summary>The acr_values label.</summary>
+        public const string AcrValues = "acr_values";
 
-        // https://tools.ietf.org/html/rfc7636#section-6.1
-        public const string CODE_VERIFIER = "code_verifier";
-        public const string CODE_CHALLENGE = "code_challenge";
-        public const string CODE_CHALLENGE_METHOD = "code_challenge_method";
+        /// <summary>The max_age label.</summary>
+        public const string MaxAge = "max_age";
 
-        // https://tools.ietf.org/html/rfc7636#section-6.2.2
-        public const string PKCE_METHOD_PLAIN = "plain";
-        public const string PKCE_METHOD_S256 = "S256";
+        /// <summary>The session_state labe for OIDC Session Management.</summary>
+        public const string SessionState = "session_state";
 
-        public const string TOKEN_EXCHANGE_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:token-exchange";
-        public const string AUDIENCE = "audience";
-        public const string REQUESTED_SUBJECT = "requested_subject";
-        public const string SUBJECT_TOKEN = "subject_token";
-        public const string SUBJECT_TOKEN_TYPE = "subject_token_type";
-        public const string REQUESTED_TOKEN_TYPE = "requested_token_type";
-        public const string ISSUED_TOKEN_TYPE = "issued_token_type";
-        public const string REQUESTED_ISSUER = "requested_issuer";
-        public const string SUBJECT_ISSUER = "subject_issuer";
-        public const string ACCESS_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:access_token";
-        public const string REFRESH_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:refresh_token";
-        public const string JWT_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:jwt";
-        public const string ID_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:id_token";
-        public const string SAML2_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:saml2";
+        /// <summary>The JWT label for OIDC Session Management.</summary>
+        public const string Jwt = "JWT";
 
-        public const string UMA_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:uma-ticket";
+        /// <summary>The code_verifier label.
+        /// See https://tools.ietf.org/html/rfc7636#section-6.1.</summary>
+        public const string CodeVerifier = "code_verifier";
 
+        /// <summary>The code_challenge label.</summary>
+        public const string CodeChallenge = "code_challenge";
 
-        public const string DISPLAY_CONSOLE = "console";
+        /// <summary>The code_challenge_method label.</summary>
+        public const string CodeChallengeMethod = "code_challenge_method";
+
+        /// <summary>The plain PKCE label.
+        /// See https://tools.ietf.org/html/rfc7636#section-6.2.2.</summary>
+        public const string PkceMethodPlain = "plain";
+
+        /// <summary>The S256 PKCE label.
+        /// See https://tools.ietf.org/html/rfc7636#section-6.2.2.</summary>
+        public const string PkceMethodS256 = "S256";
+
+        /// <summary>The token exchange grant type.</summary>
+        public const string TokenExchangeGrantType = "urn:ietf:params:oauth:grant-type:token-exchange";
+
+        /// <summary>The audience label.</summary>
+        public const string Audience = "audience";
+
+        /// <summary>The requested_subject label.</summary>
+        public const string RequestedSubject = "requested_subject";
+
+        /// <summary>The subject_token label.</summary>
+        public const string SubjectToken = "subject_token";
+
+        /// <summary>The subject_token_type label.</summary>
+        public const string SubjectTokenType = "subject_token_type";
+
+        /// <summary>The requested_token_type label.</summary>
+        public const string RequestedTokenType = "requested_token_type";
+
+        /// <summary>The issued_token_type label.</summary>
+        public const string IssuedTokenType = "issued_token_type";
+
+        /// <summary>The requested_issuer label.</summary>
+        public const string RequestedIssuer = "requested_issuer";
+
+        /// <summary>The subject_issuer label.</summary>
+        public const string SubjectIssuer = "subject_issuer";
+
+        /// <summary>The access token type.</summary>
+        public const string AccessTokenType = "urn:ietf:params:oauth:token-type:access_token";
+
+        /// <summary>The refresh token type.</summary>
+        public const string RefreshTokenType = "urn:ietf:params:oauth:token-type:refresh_token";
+
+        /// <summary>The JWT token type.</summary>
+        public const string JwtTokenType = "urn:ietf:params:oauth:token-type:jwt";
+
+        /// <summary>The ID token type.</summary>
+        public const string IdTokenType = "urn:ietf:params:oauth:token-type:id_token";
+
+        /// <summary>The SAML 2 token type.</summary>
+        public const string Saml2TokenType = "urn:ietf:params:oauth:token-type:saml2";
+
+        /// <summary>The UMA ticket token type.</summary>
+        public const string UmaGrantType = "urn:ietf:params:oauth:grant-type:uma-ticket";
+
+        /// <summary>The display console.</summary>
+        public const string DisplayConsole = "console";
     }
 }
-
-

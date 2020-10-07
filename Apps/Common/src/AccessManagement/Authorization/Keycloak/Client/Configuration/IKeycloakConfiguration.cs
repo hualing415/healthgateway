@@ -15,21 +15,22 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration
 {
+    using System;
+
     /// <summary>
     /// Interface that represents the OpenId Configuration model for the Keycloak Configuration.
     /// </summary>
     public interface IKeycloakConfiguration
     {
-
-        ///<summary>Gets or sets a single valid audience value for any received OpenIdConnect token.
+        /// <summary>Gets or sets a single valid audience value for any received OpenIdConnect token.
         /// This value is passed into TokenValidationParameters.ValidAudience if that property is empty.
         /// Value:  The expected audience for any received OpenIdConnect token.</summary>
         public string Audience { get; set; }
 
-        ///<summary>Gets or sets the Keycloak Authorization Server Url.</summary>
-        public string AuthServerUrl { get; set; }
+        /// <summary>Gets or sets the Keycloak Authorization Server Url.</summary>
+        public Uri? AuthServerUrl { get; set; }
 
-        /// <summary>Gets or set the Keycloak Realm name.</summary>
+        /// <summary>Gets or sets the Keycloak Realm name.</summary>
         public string Realm { get; set; }
     }
 }

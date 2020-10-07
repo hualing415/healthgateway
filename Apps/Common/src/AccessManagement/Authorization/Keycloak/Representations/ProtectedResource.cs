@@ -15,6 +15,7 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation
 {
+    using System;
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
 
@@ -23,33 +24,31 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     /// </summary>
     public class ProtectedResource
     {
-        /// <summary>The resource identifier</summary>
+        /// <summary>Gets or sets the resource identifier.</summary>
         [JsonPropertyName("_id")]
         public string? Id { get; set; }
 
         /// <summary>Gets or sets the resource name.</summary>
         public string? Name { get; set; }
 
-        /// <summary>Gets or sets the resource URIs.</summary>
-
+        /// <summary>Gets the resource URIs.</summary>
         [JsonPropertyName("uris")]
-        public List<string>? Uris { get; set; }
+        public List<string> Uris { get;  } = new List<string>();
 
         /// <summary>Gets or sets the resource icon URI.</summary>
-
         [JsonPropertyName("icon_uri")]
-        public string? IconUri { get; set; }
+        public Uri? IconUri { get; set; }
 
          /// <summary>Gets or sets the resource owner.</summary>
         public ResourceOwner? Owner { get; set; }
 
-         /// <summary>Gets or sets whether the resource owner manages access.</summary>
+         /// <summary>Gets or sets a value indicating whether the resource owner manages access.</summary>
         public bool OwnerManagedAccess { get; set; }
 
          /// <summary>Gets or sets whether the resource display Name.</summary>
         public string? DisplayName { get; set; }
 
-         /// <summary>Gets or sets whether the resource attributes.</summary>
-        public Dictionary<string, List<string>>? Attributes { get; set; }
+         /// <summary>Gets the resource attributes.</summary>
+        public Dictionary<string, List<string>> Attributes { get; } = new Dictionary<string, List<string>>();
     }
 }

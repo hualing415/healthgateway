@@ -18,17 +18,14 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using System;
     using System.Net.Http;
     using System.Text.Json;
-
     using System.Threading.Tasks;
 
-    using Microsoft.Extensions.Logging;
-
-    using HealthGateway.Common.Services;
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Representation;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
+    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
+    using HealthGateway.Common.Services;
 
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// An entry point for obtaining permissions from the server.
@@ -49,7 +46,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="keycloakConfiguration">The keycloak settings configuration.</param>
         /// <param name="serverConfigurationDelegate">uma2 server-side configuration settings delegate.</param>
         public AuthorizationResource(
-            ILogger<AuthorizationResource> logger, 
+            ILogger<AuthorizationResource> logger,
             IKeycloakConfiguration keycloakConfiguration,
             IServerConfigurationResource serverConfigurationDelegate,
             IHttpClientService httpClientService)
@@ -85,7 +82,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
             string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             AuthorizationResponse authorizationResponse = JsonSerializer.Deserialize<AuthorizationResponse>(result);
-            return authorizationResponse;          
+            return authorizationResponse;
         }
     }
 }

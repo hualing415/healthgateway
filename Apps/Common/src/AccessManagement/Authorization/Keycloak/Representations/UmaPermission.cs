@@ -22,21 +22,27 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     /// <summary> A class representing a UMA 2.0 Permission.</summary>
     public class UmaPermission : AbstractPolicy
     {
-        /// <summary>Gets or sets the UMA permssion roles.</summary>
+        /// <summary>Initializes a new instance of the <see cref="UmaPermission"/> class.</summary>
+        public UmaPermission()
+        {
+            this.Type = "uma";
+        }
+
+        /// <summary>Gets the UMA permssion roles.</summary>
         [JsonPropertyName("roles")]
-        public List<string>? Roles { get; set; }
+        public List<string> Roles { get; } = new List<string>();
 
-        /// <summary>Gets or sets the UMA permssion groups.</summary>
+        /// <summary>Gets the UMA permssion groups.</summary>
         [JsonPropertyName("groups")]
-        public List<string>? Groups { get; set; }
+        public List<string> Groups { get; } = new List<string>();
 
-        /// <summary>Gets or sets the UMA permssion clients.</summary>
+        /// <summary>Gets the UMA permssion clients.</summary>
         [JsonPropertyName("clients")]
-        public List<string>? Clients { get; set; }
+        public List<string> Clients { get; } = new List<string>();
 
-        /// <summary>Gets or sets the UMA permssion users.</summary>
+        /// <summary>Gets the UMA permssion users.</summary>
         [JsonPropertyName("users")]
-        public List<string>? Users { get; set; }
+        public List<string>? Users { get; } = new List<string>();
 
         /// <summary>Gets or sets the UMA permssion condition.</summary>
         [JsonPropertyName("condition")]
@@ -47,14 +53,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// <param name="roleName">The role Name.</param>
         public void AddClientRole(string clientId, string roleName)
         {
-            Roles = (Roles == null) ? new List<string>() : Roles;
-            Roles.Add(clientId + "/" + roleName);
-        }
-
-        /// <summary>Creates a new instance of <cref name="UmaPermission"/>.</summary>
-        public UmaPermission()
-        {
-            this.Type = "uma";
+            this.Roles.Add(clientId + "/" + roleName);
         }
     }
 }

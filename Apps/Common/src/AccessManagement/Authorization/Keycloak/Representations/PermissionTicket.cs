@@ -19,13 +19,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     using System.Text;
     using System.Text.Json.Serialization;
 
-    /// <summary>UMA 2.0 Permission Ticket</summary>
+    /// <summary>UMA 2.0 Permission Ticket.</summary>
     public class PermissionTicket
     {
         /// <summary>Gets or sets the permssion ticket ID.</summary>
         public string? Id { get; set; }
 
-        /// <summary>Gets or sets the permssion ticket onwer.</summary>
+        /// <summary>Gets or sets the permssion ticket owner.</summary>
         public string? Owner { get; set; }
 
         /// <summary>Gets or sets the permssion ticket resource.</summary>
@@ -34,7 +34,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// <summary>Gets or sets the permssion ticket scope.</summary>
         public string? Scope { get; set; }
 
-        /// <summary>Gets or sets whether the permssion ticket granted.</summary>
+        /// <summary>Gets or sets a value indicating whether the permssion ticket is granted.</summary>
         public bool Granted { get; set; }
 
         /// <summary>Gets or sets the permssion ticket scope name.</summary>

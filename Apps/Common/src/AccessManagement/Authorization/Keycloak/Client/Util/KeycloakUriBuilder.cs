@@ -16,35 +16,24 @@
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util
 {
     using System;
+    using System.Globalization;
 
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
 
     /// <summary>Helper class to build a URL from the well-known URL constant templates for Keycloak.</summary>
     public static class KeycloakUriBuilder
     {
-        private const string REALM_NAME = "{realm-name}";
-        private static string Build(IKeycloakConfiguration configuration, string template)
-        {
-            string realm = configuration.Realm;
-            string url = new string(configuration.AuthServerUrl);
-            int idx = url.LastIndexOf("/");
-            if (idx.Equals(url.Length - 1))
-            {
-                url = url.Substring(0, idx);
-            }
-            url += template;
-            url.Replace(REALM_NAME, realm);
-
-            return url;
-        }
+        private const string RealmNameMatch = "{realm-name}";
 
         /// <summary>Build up the keycloak server url from the template provided and using the configuration settings.</summary>
-        /// <param name="configuration">The <cref name="IKeycloakConfiguration"/>.</param>
+        /// <param name="configuration">The <see cref="IKeycloakConfiguration"/>.</param>
         /// <param name="template">The template of which '{realm-name}' will be substituted for the configured realm name.</param>
-        /// <returns>a Uri for he given template url</returns>
+        /// <returns>A new Uri from the the given template url.</returns>
         public static Uri BuildUri(IKeycloakConfiguration configuration, string template)
         {
-            return new Uri(Build(configuration, template));
+            string relativePath = template.Replace(RealmNameMatch, configuration.Realm, StringComparison.InvariantCulture);
+
+            return new Uri(configuration.AuthServerUrl!, relativePath);
         }
     }
 }

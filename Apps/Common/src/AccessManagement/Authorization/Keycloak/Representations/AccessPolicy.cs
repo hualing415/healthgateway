@@ -16,10 +16,11 @@
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation
 {
     using System.Collections.Generic;
-    /// <summary> A class representing a UMA 2.0 Policy.</summary>
+
+    /// <summary>A class representing a UMA 2.0 Policy.</summary>
     public class AccessPolicy : AbstractPolicy
     {
-        /// <summary>Gets or set the policy configuration.</summary>
-        public Dictionary<string, string> Config { get; set; } = new Dictionary<string,string>();
+        /// <summary>Gets the policy configuration.</summary>
+        public Dictionary<string, string> Config { get; } = new Dictionary<string, string>();
     }
 }

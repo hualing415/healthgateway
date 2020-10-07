@@ -23,8 +23,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     /// </summary>
     public class ResourceAuthorization
     {
-        /// <summary>Gets the <cref name="Permission"/> permissions.</summary>
+        /// <summary>Gets the <see cref="Permission"/> permissions.</summary>
         [JsonPropertyName("permissions")]
-        public List<Permission>? Permissions { get; } 
+        public List<Permission> Permissions { get; } = new List<Permission>();
     }
 }

@@ -18,23 +18,23 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
 
-    /// <summary>A PermissionTicket Token for UMA 2.0</summary>
+    /// <summary>A PermissionTicket Token for UMA 2.0.</summary>
     public class PermissionTicketToken : JwtPayload
     {
-        /// <summary> Get or sets the Permissions. </summary>
-        public List<Permission>? Permissions { get; set; }
-
-        /// <summary> Create new PermissionTicketToken class. </summary>
+        /// <summary>Initializes a new instance of the <see cref="PermissionTicketToken"/> class. </summary>
         /// <param name="permissions">A List of Permission objects.</param>
         public PermissionTicketToken(List<Permission> permissions)
         {
             this.Permissions = permissions;
         }
 
-        /// <summary> Create new PermissionTicketToken class. </summary>
+        /// <summary>Initializes a new instance of the <see cref="PermissionTicketToken"/> class. </summary>
         public PermissionTicketToken()
         {
             this.Permissions = new List<Permission>();
         }
+
+        /// <summary>Gets the Permissions. </summary>
+        public List<Permission>? Permissions { get; }
     }
 }

@@ -19,22 +19,21 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Text.Json;
-
     using System.Threading.Tasks;
+
+    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
+    using HealthGateway.Common.Services;
 
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
 
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
-
-    using HealthGateway.Common.Services;
     ///
     /// <summary>An entry point for managing permission tickets using the Protection API.</summary>
     ///
     public class ProtectedResource : IProtectedResource
     {
         private readonly ILogger logger;
+
         private readonly IHttpClientService httpClientService;
 
         private readonly IServerConfigurationResource serverConfigurationDelegate;
@@ -102,6 +101,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                     this.logger.LogError(msg);
                     throw new HttpRequestException(msg);
                 }
+
                 return true;
             }
         }
@@ -124,6 +124,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                 this.logger.LogError(msg);
                 throw new HttpRequestException(msg);
             }
+
             return true;
         }
 
@@ -147,6 +148,41 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             Keycloak.Representation.ProtectedResource resourceResponse = JsonSerializer.Deserialize<Keycloak.Representation.ProtectedResource>(result);
             return resourceResponse;
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<Keycloak.Representation.ProtectedResource>> FindByUri(Uri uri, string token)
+        {
+            return await this.Find(null, null, uri, null, null, null, false, false, true, null, null, token).ConfigureAwait(true);
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<Keycloak.Representation.ProtectedResource>> FindByMatchingUri(Uri uri, string token)
+        {
+            return await this.Find(null, null, uri, null, null, null, true, false, true, null, null, token).ConfigureAwait(true);
+        }
+
+        /// <inheritdoc/>
+        public async Task<string[]> FindAll(string token)
+        {
+            HttpClient client = this.httpClientService.CreateDefaultHttpClient();
+
+            client.DefaultRequestHeaders.Accept.Clear();
+
+            client.BearerTokenAuthorization(token);
+            string requestUrl = this.serverConfigurationDelegate.ServerConfiguration.ResourceRegistrationEndpoint;
+            client.BaseAddress = new Uri(requestUrl);
+            requestUrl = QueryHelpers.AddQueryString(requestUrl, "deep", "false");
+
+            HttpResponseMessage response = await client.GetAsync(new Uri(requestUrl)).ConfigureAwait(true);
+            if (!response.IsSuccessStatusCode)
+            {
+                this.logger.LogError($"findAll() returned with StatusCode := {response.StatusCode}.");
+            }
+
+            string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            string[] resourceIds = JsonSerializer.Deserialize<string[]>(result);
+            return resourceIds;
         }
 
         /// <summary>
@@ -192,33 +228,41 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "_id", resourceId);
             }
+
             if (name != null)
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "name", name);
             }
+
             if (uri != null)
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "uri", uri.AbsoluteUri);
             }
+
             if (owner != null)
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "owner", owner);
             }
+
             if (type != null)
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "type", type);
             }
+
             if (scope != null)
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "scope", scope);
             }
+
             requestUrl = QueryHelpers.AddQueryString(requestUrl, "matchingUri", matchingUri.ToString());
             requestUrl = QueryHelpers.AddQueryString(requestUrl, "exactName", exactName.ToString());
             requestUrl = QueryHelpers.AddQueryString(requestUrl, "deep", deep.ToString());
+
             if (firstResult != null)
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "first", firstResult.ToString());
             }
+
             if (maxResult != null)
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "max", maxResult.ToString());
@@ -227,6 +271,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "max", "-1");
             }
+
             HttpResponseMessage response = await client.GetAsync(new Uri(requestUrl)).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
@@ -237,41 +282,5 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             List<Keycloak.Representation.ProtectedResource> resourceResponse = JsonSerializer.Deserialize<List<Keycloak.Representation.ProtectedResource>>(result);
             return resourceResponse;
         }
-
-        /// <inheritdoc/>
-        public async Task<List<Keycloak.Representation.ProtectedResource>> FindByUri(Uri uri, string token)
-        {
-            return await this.Find(null, null, uri, null, null, null, false, false, true, null, null, token).ConfigureAwait(true);
-        }
-
-        /// <inheritdoc/>
-        public async Task<List<Keycloak.Representation.ProtectedResource>> FindByMatchingUri(Uri uri, string token)
-        {
-            return await this.Find(null, null, uri, null, null, null, true, false, true, null, null, token).ConfigureAwait(true);
-        }
-
-        /// <inheritdoc/>
-        public async Task<string[]> FindAll(string token)
-        {
-            HttpClient client = this.httpClientService.CreateDefaultHttpClient();
-
-            client.DefaultRequestHeaders.Accept.Clear();
-
-            client.BearerTokenAuthorization(token);
-            string requestUrl = this.serverConfigurationDelegate.ServerConfiguration.ResourceRegistrationEndpoint;
-            client.BaseAddress = new Uri(requestUrl);
-            requestUrl = QueryHelpers.AddQueryString(requestUrl, "deep", "false");
-
-            HttpResponseMessage response = await client.GetAsync(new Uri(requestUrl)).ConfigureAwait(true);
-            if (!response.IsSuccessStatusCode)
-            {
-                this.logger.LogError($"findAll() returned with StatusCode := {response.StatusCode}.");
-            }
-
-            string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            string[] resourceIds = JsonSerializer.Deserialize<string[]>(result);
-            return resourceIds;
-        }
-
     }
 }

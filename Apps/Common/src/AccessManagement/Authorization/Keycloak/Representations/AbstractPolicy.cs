@@ -18,7 +18,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     using System.Collections.Generic;
     using System.Text.Json.Serialization;
 
-    ///<summary> A generic Policy to inherit from.</summary>
+    /// <summary>A generic Policy to inherit from.</summary>
     public class AbstractPolicy : IPolicy
     {
         /// <inheritdoc/>
@@ -39,27 +39,26 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
 
         /// <inheritdoc/>
         [JsonPropertyName("policies")]
-        public List<string>? Policies { get; set; }
+        public List<string> Policies { get; } = new List<string>();
 
         /// <inheritdoc/>
         [JsonPropertyName("resources")]
-        public List<string>? Resources { get; set; }
+        public List<string> Resources { get; } = new List<string>();
 
         /// <inheritdoc/>
         [JsonPropertyName("scopes")]
-        public List<string>? Scopes { get; set; }
+        public List<string> Scopes { get; } = new List<string>();
 
         /// <inheritdoc/>
         [JsonPropertyName("logic")]
-        public Logic Logic { get; set; } = Logic.POSITIVE;
+        public Logic Logic { get; set; } = Logic.Positive;
 
         /// <inheritdoc/>
         [JsonPropertyName("decision_strategy")]
-        public DecisionStrategy DecisionStrategy { get; set; } = DecisionStrategy.UNANIMOUS;
+        public DecisionStrategy DecisionStrategy { get; set; } = DecisionStrategy.Unanimous;
 
         /// <inheritdoc/>
         [JsonPropertyName("owner")]
         public string? Owner { get; set; }
-
     }
 }

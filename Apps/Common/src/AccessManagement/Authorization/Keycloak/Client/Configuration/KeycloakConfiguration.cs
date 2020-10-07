@@ -15,6 +15,7 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration
 {
+    using System;
     using Microsoft.Extensions.Configuration;
 
     /// <summary>
@@ -22,25 +23,24 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
     /// </summary>
     public class KeycloakConfiguration : IKeycloakConfiguration
     {
+        private const string ConfigurationSectionKey = "Keycloak";
         private readonly IConfiguration configuration;
 
-        private static string ConfigurationSectionKey = "Keycloak";
-
-        ///<inheritdoc/>
-        public string Audience { get; set; } = string.Empty;
-
-        ///<inheritdoc/>
-        public string AuthServerUrl { get; set; } = string.Empty;
-
-        ///<inheritdoc/>
-        public string Realm { get; set; } = string.Empty;
-
         /// <summary>Initializes a new instance of the <see cref="KeycloakConfiguration"/> class.</summary>
-        /// <param name="configuration">The injected <cref name="IConfiguration"/> configuration object.</param>
+        /// <param name="configuration">The injected <see cref="IConfiguration"/> configuration object.</param>
         public KeycloakConfiguration(IConfiguration configuration)
         {
             this.configuration = configuration;
             this.configuration.Bind(ConfigurationSectionKey, this);
         }
+
+        /// <inheritdoc/>
+        public string Audience { get; set; } = string.Empty;
+
+        /// <inheritdoc/>
+        public Uri? AuthServerUrl { get; set; }
+
+        /// <inheritdoc/>
+        public string Realm { get; set; } = string.Empty;
     }
 }

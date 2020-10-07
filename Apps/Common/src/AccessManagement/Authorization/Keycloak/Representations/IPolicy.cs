@@ -32,14 +32,14 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// <summary>Gets or sets the policy type.</summary>
         public string? Type { get; set; }
 
-        /// <summary>Gets or sets the list of policies.</summary>
-        public List<string>? Policies { get; set; }
+        /// <summary>Gets the list of policies.</summary>
+        public List<string> Policies { get; }
 
-        /// <summary>Gets or sets the list of resources.</summary>
-        public List<string>? Resources { get; set; }
+        /// <summary>Gets the list of resources.</summary>
+        public List<string> Resources { get; }
 
-        /// <summary>Gets or sets the list of scopes.</summary>
-        public List<string>? Scopes { get; set; }
+        /// <summary>Gets the list of scopes.</summary>
+        public List<string> Scopes { get;  }
 
         /// <summary>Gets or sets the Logic setting.</summary>
         public Logic Logic { get; set; }

@@ -24,7 +24,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     /// keycloak client library, but that class is not useful in dotnet core. </summary>
     public static class AccessTokenExtension
     {
-
         /// <summary>Checks whether the AccessToken has the permissions for the given resource and scope.</summary>
         /// <param name="accessToken">this.</param>
         /// <param name="resourceName">A resource name.</param>
@@ -46,8 +45,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                         }
                     }
                 }
+
                 return false;
             }
+
             return false;
         }
 
@@ -80,6 +81,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
                 return false;
             }
+
             return false;
         }
 

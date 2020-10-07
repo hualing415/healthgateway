@@ -18,15 +18,14 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using System;
     using System.Net.Http;
     using System.Text.Json;
-
     using System.Threading.Tasks;
-
-    using Microsoft.Extensions.Logging;
 
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
-
     using HealthGateway.Common.Services;
+
+    using Microsoft.Extensions.Logging;
+
     ///
     /// <summary>Gets the uma2 server configuration settings from the well-known-endpoint.</summary>
     ///
@@ -37,20 +36,9 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
         private readonly IKeycloakConfiguration keycloakConfiguration;
 
-        private ServerConfiguration? _serverConfiguration = null;
+        private ServerConfiguration? serverConfiguration;
 
-        /// <inheritdoc/>
-        public ServerConfiguration ServerConfiguration {
-            get {
-                if (_serverConfiguration == null)
-                {
-                    _serverConfiguration =  this.GetServerConfiguration().Result;
-                } 
-                return _serverConfiguration;
-            }
-        }
-
-        /// <summary>Initializes a new instance of the <cref name="ServerConfigurationResource"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServerConfigurationResource"/> class.</summary>
         /// <param name="logger">The injected logger.</param>
         /// <param name="httpClientService">The injected httpClientService.</param>
         /// <param name="keycloakConfiguration">The injected keycloak configuration.</param>
@@ -64,15 +52,29 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             this.keycloakConfiguration = keycloakConfiguration;
         }
 
+        /// <inheritdoc/>
+        public ServerConfiguration ServerConfiguration
+        {
+            get
+            {
+                if (this.serverConfiguration == null)
+                {
+                    this.serverConfiguration = this.GetServerConfiguration().Result;
+                }
+
+                return this.serverConfiguration;
+            }
+        }
+
         /// <summary>Gets the UMA 2.0 Server Configuration from teh well-known Keycloak server end point.</summary>
-        /// <returns>An instance of a <cref name="ServerConfiguration"/>.</returns>
+        /// <returns>An instance of a <see cref="ServerConfiguration"/>.</returns>
         private async Task<ServerConfiguration> GetServerConfiguration()
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
 
-            Uri configUri = KeycloakUriBuilder.BuildUri(this.keycloakConfiguration, ServiceUrlConstants.AUTHZ_DISCOVERY_URL);
+            Uri configUri = KeycloakUriBuilder.BuildUri(this.keycloakConfiguration, ServiceUrlConstants.Uma2DiscoveryUrl);
 
             HttpResponseMessage response = await client.GetAsync(configUri).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)

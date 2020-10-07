@@ -20,12 +20,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     /// </summary>
     public class AuthorizationResponse : AccessTokenResponse
     {
-
-        /// <summary>Gets or sets a boolean whether the token was upgraded.</summary>
-        public bool Upgraded { get; set; } = false;
-
-        /// <summary>Initializes a new instance of a <cref name="AuthorizationResponse"/> class.</summary>
-        /// <param name="response">An <cref name="AccessTokenResponse"/> response.</param>
+        /// <summary>Initializes a new instance of the <see cref="AuthorizationResponse"/> class.</summary>
+        /// <param name="response">An <see cref="AccessTokenResponse"/> response.</param>
         /// <param name="upgraded">A boolean whether the token was upgraded.</param>
         public AuthorizationResponse(AccessTokenResponse response, bool upgraded)
         {
@@ -37,5 +33,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
             this.NotBeforePolicy = response.NotBeforePolicy;
             this.Upgraded = upgraded;
         }
+
+        /// <summary>Gets or sets a value indicating whether the token was upgraded.</summary>
+        public bool Upgraded { get; set; }
     }
 }

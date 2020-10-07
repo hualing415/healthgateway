@@ -26,19 +26,19 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     public interface IPermissionResource
     {
         /// <summary>Creates a new permission ticket for a single resource and scope(s).</summary>
-        /// <param name="request"> the <cref name="PermissionRequest"/> representing the resource and scope(s).</param>
+        /// <param name="request"> the <see cref="PermissionRequest"/> representing the resource and scope(s).</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>Permission response holding a permission ticket with the requested permissions.</returns>
         public Task<PermissionResponse> Create(PermissionRequest request, string token);
 
         /// <summary>Creates new permission ticket(s) for a set of resources and scope(s).</summary>
-        /// <param name="requests"> a List of <cref name="PermissionRequest"/> representing the resource and scope(s).</param>
+        /// <param name="requests"> a List of <see cref="PermissionRequest"/> representing the resource and scope(s).</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>Permission response holding a permission ticket with the requested permissions.</returns>
         public Task<PermissionResponse> Create(List<PermissionRequest> requests, string token);
 
         /// <summary>Creates a new uma permission for a single resource and scope(s).</summary>
-        /// <param name="ticket">The <cref name="PermissionTicketRepresentation"/> representing the resource and scope(s).</param>
+        /// <param name="ticket">The <see cref="PermissionTicket"/> representing the resource and scope(s).</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>A permission response holding the permission ticket representation.</returns>
         public Task<PermissionTicket> Create(PermissionTicket ticket, string token);

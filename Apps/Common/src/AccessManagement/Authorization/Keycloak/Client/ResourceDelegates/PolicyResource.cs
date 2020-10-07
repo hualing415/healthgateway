@@ -20,17 +20,15 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using System.Globalization;
     using System.Net.Http;
     using System.Text.Json;
-
     using System.Threading.Tasks;
+
+    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
+    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
+    using HealthGateway.Common.Services;
 
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
 
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
-
-    using HealthGateway.Common.Services;
     ///
     /// <summary>An entry point for managing user-managed permissions for a particular resource.</summary>
     ///
@@ -104,6 +102,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                     this.logger.LogError(msg);
                     throw new HttpRequestException(msg);
                 }
+
                 return true;
             }
         }
@@ -126,6 +125,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                 this.logger.LogError(msg);
                 throw new HttpRequestException(msg);
             }
+
             return true;
         }
 

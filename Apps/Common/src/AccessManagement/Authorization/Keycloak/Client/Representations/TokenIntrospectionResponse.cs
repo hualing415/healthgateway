@@ -26,12 +26,12 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     /// </summary>
     public class TokenIntrospectionResponse : JwtPayload
     {
-        /// <summary>Gets or sets a boolean whether permissions are active.</summary>
+        /// <summary>Gets or sets a value indicating whether permissions are active.</summary>
         [JsonPropertyName("active")]
         public bool Active { get; set; } = false;
 
-        /// <summary>Gets or sets a list of permissions.</summary>
+        /// <summary>Gets a list of permissions.</summary>
         [JsonPropertyName("permissions")]
-        public List<Permission> Permissions { get; set; } = new List<Permission>();
+        public List<Permission> Permissions { get; } = new List<Permission>();
     }
 }

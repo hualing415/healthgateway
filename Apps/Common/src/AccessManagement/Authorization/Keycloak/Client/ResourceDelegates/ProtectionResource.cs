@@ -21,12 +21,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using System.Text.Json;
     using System.Threading.Tasks;
 
-    using Microsoft.Extensions.Logging;
-
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Representation;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
     using HealthGateway.Common.Services;
+
+    using Microsoft.Extensions.Logging;
+
     ///
     /// <summary>An entry point for managing permission tickets using the Protection API.</summary>
     ///
@@ -84,6 +85,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                 {
                     this.logger.LogError($"introspectRequestingPartyToken() returned with StatusCode := {response.StatusCode}.");
                 }
+
                 string result = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
                 TokenIntrospectionResponse introspectionResponse = JsonSerializer.Deserialize<TokenIntrospectionResponse>(result);

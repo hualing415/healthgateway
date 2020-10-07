@@ -18,15 +18,34 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak
     /// <summary>Keycloak Service URL Constant template Url paths... well known Urls.</summary>
     public static class ServiceUrlConstants
     {
-        public static string AUTH_PATH = "/realms/{realm-name}/protocol/openid-connect/auth";
-        public static string TOKEN_PATH = "/realms/{realm-name}/protocol/openid-connect/token";
-        public static string TOKEN_SERVICE_LOGOUT_PATH = "/realms/{realm-name}/protocol/openid-connect/logout";
-        public static string ACCOUNT_SERVICE_PATH = "/realms/{realm-name}/account";
-        public static string REALM_INFO_PATH = "/realms/{realm-name}";
-        public static string CLIENTS_MANAGEMENT_REGISTER_NODE_PATH = "/realms/{realm-name}/clients-managements/register-node";
-        public static string CLIENTS_MANAGEMENT_UNREGISTER_NODE_PATH = "/realms/{realm-name}/clients-managements/unregister-node";
-        public static string JWKS_URL = "/realms/{realm-name}/protocol/openid-connect/certs";
-        public static string DISCOVERY_URL = "/realms/{realm-name}/.well-known/openid-configuration";
-        public static string AUTHZ_DISCOVERY_URL = "/realms/{realm-name}/.well-known/uma2-configuration";
+        /// <summary>The path to the authorization endpoint.</summary>
+        public const string AuthPath = "/realms/{realm-name}/protocol/openid-connect/auth";
+
+        /// <summary>The path to the token endpoint.</summary>
+        public const string TokenPath = "/realms/{realm-name}/protocol/openid-connect/token";
+
+        /// <summary>The path to the token logout endpoint.</summary>
+        public const string TokenServiceLogoutPath = "/realms/{realm-name}/protocol/openid-connect/logout";
+
+        /// <summary>The path to the account endpoint.</summary>
+        public const string AccountServicePath = "/realms/{realm-name}/account";
+
+        /// <summary>The path to the realm info endpoint.</summary>
+        public const string RealmInfoPath = "/realms/{realm-name}";
+
+        /// <summary>The path to the clients management register node endpoint.</summary>
+        public const string ClientsManagementRegisterNodePath = "/realms/{realm-name}/clients-managements/register-node";
+
+        /// <summary>The path to the clients management unregister node endpoint.</summary>
+        public const string ClientsManagementUnRegisterNodePath = "/realms/{realm-name}/clients-managements/unregister-node";
+
+        /// <summary>The path to the JWKS endpoint.</summary>
+        public const string JwksUrl = "/realms/{realm-name}/protocol/openid-connect/certs";
+
+        /// <summary>The path to the openid discovery configuration endpoint.</summary>
+        public const string DiscoveryUrl = "/realms/{realm-name}/.well-known/openid-configuration";
+
+        /// <summary>The path to the UMA 2.0 discovery configuration endpoint.</summary>
+        public const string Uma2DiscoveryUrl = "/realms/{realm-name}/.well-known/uma2-configuration";
     }
 }

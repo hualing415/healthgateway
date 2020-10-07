@@ -37,16 +37,16 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         public string ResourceName { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the scopes.
+        /// Gets the scopes.
         /// </summary>
         [JsonPropertyName("scope")]
-        public List<string> ?Scopes { get; set; }
+        public List<string>? Scopes { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the claims.
+        /// Gets the claims.
         /// </summary>
         [JsonPropertyName("claims")]
-        public Dictionary<string, List<string> >? Claims { get; set; } 
+        public Dictionary<string, List<string>> Claims { get; } = new Dictionary<string, List<string>>();
 
         /// <summary>Convert the Permission object to its string representation.</summary>
         /// <returns>The converted string.</returns>

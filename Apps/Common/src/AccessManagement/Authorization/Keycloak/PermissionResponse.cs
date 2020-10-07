@@ -23,19 +23,18 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     public class PermissionResponse
     {
         /// <summary>
-        /// Gets or set the permission ticket.
+        /// Initializes a new instance of the <see cref="PermissionResponse"/> class.
         /// </summary>
-        [JsonPropertyName("ticket")]
-        public string Ticket { get; set; }
-
-        /// <summary>
-        /// Creates a new instance of <cref name="PermissionResponse"/>.
-        /// </summary> 
-        /// <param name="ticket">A permission ticket.</param>       
+        /// <param name="ticket">A permission ticket.</param>
         public PermissionResponse(string ticket)
         {
             this.Ticket = ticket;
         }
 
+        /// <summary>
+        /// Gets or sets the permission ticket.
+        /// </summary>
+        [JsonPropertyName("ticket")]
+        public string Ticket { get; set; } = string.Empty;
     }
 }

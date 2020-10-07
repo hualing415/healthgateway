@@ -15,16 +15,11 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client
 {
-    using System;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-
-    using HealthGateway.Common.Services;
-    using Microsoft.Extensions.Logging;
-
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Resource;
+    using HealthGateway.Common.Services;
 
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// This is class serves as an entry point for clients looking for access to Keycloak Authorization Services.
@@ -49,15 +44,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client
         /// The keycloak configuration.
         /// </summary>
         private readonly IKeycloakConfiguration keycloakConfiguration;
-
-        /// <summary>The UMA 2.0 server configuration resource.</summary>
-        public IServerConfigurationResource ServerConfiguration { get; }
-
-        /// <summary>The protection resource</summary>
-        public IProtectionResource Protection { get; }
-
-        /// <summary>The authorization resource</summary>
-        public IAuthorizationResource Authorization { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthzClient"/> class.
@@ -85,5 +71,14 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client
             this.Protection = protectionResource;
             this.Authorization = authorizationResource;
         }
+
+        /// <summary>Gets the UMA 2.0 server configuration resource.</summary>
+        public IServerConfigurationResource ServerConfiguration { get; }
+
+        /// <summary>Gets the protection resource.</summary>
+        public IProtectionResource Protection { get; }
+
+        /// <summary>Gets the authorization resource.</summary>
+        public IAuthorizationResource Authorization { get; }
     }
 }

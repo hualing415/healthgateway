@@ -18,17 +18,16 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using System.Threading.Tasks;
 
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
- 
+
     /// <summary>
     /// An entry point for obtaining permissions from the server.
     /// </summary>
     public interface IAuthorizationResource
     {
-        /// <summary>Query the server for permissions given an <cref name="AuthorizationRequest"/>.</summary>
-        /// <param name="request">A <cref name="AuthorizationRequest"/> instance.</param>
+        /// <summary>Query the server for permissions given an <see cref="AuthorizationRequest"/>.</summary>
+        /// <param name="request">A <see cref="AuthorizationRequest"/> instance.</param>
         /// <param name="accessToken">A Base64 encoded OAuth 2.0 accessToken from an authentication event.</param>
-        /// <returns>An <cref name="AuthorizationRequest"/>with a RPT holding all granted permissions.</returns>
+        /// <returns>An <see cref="AuthorizationRequest"/>with a RPT holding all granted permissions.</returns>
         public Task<AuthorizationResponse> Authorize(AuthorizationRequest request, string accessToken);
-
     }
 }

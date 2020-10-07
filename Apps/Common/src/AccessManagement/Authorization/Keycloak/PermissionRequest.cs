@@ -27,15 +27,15 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         [JsonPropertyName("resource_id")]
         public string? ResourceId { get; set; }
 
-        /// <summary>Gets or sets the resource scopes.</summary>
+        /// <summary>Gets the resource scopes.</summary>
         [JsonPropertyName("resource_scopes")]
-        public List<string>? Scopes { get; set; }
+        public List<string>? Scopes { get; } = new List<string>();
 
         /// <summary>Gets or sets the resource_server_id.</summary>
         [JsonPropertyName("resource_server_id")]
         public string? ResourceServerId { get; set; }
 
-        /// <summary>Gets or sets the claims.</summary>
-        public Dictionary<string, List<string>>? Claims { get; set; }
+        /// <summary>Gets the claims.</summary>
+        public Dictionary<string, List<string>>? Claims { get; } = new Dictionary<string, List<string>>();
     }
 }

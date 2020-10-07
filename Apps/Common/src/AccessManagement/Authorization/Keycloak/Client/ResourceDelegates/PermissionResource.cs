@@ -19,15 +19,14 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Text.Json;
-
     using System.Threading.Tasks;
+
+    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
+    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
+    using HealthGateway.Common.Services;
 
     using Microsoft.Extensions.Logging;
 
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
-
-    using HealthGateway.Common.Services;
     ///
     /// <summary>An entry point for managing permission tickets using the Protection API.</summary>
     ///
@@ -36,7 +35,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         private readonly ILogger logger;
 
         private readonly IServerConfigurationResource serverConfigurationDelegate;
-
 
         /// <summary>The injected HttpClientService.</summary>
         private readonly IHttpClientService httpClientService;
@@ -249,6 +247,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                     this.logger.LogError(msg);
                     throw new HttpRequestException(msg);
                 }
+
                 return true;
             }
         }
@@ -271,6 +270,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                 this.logger.LogError(msg);
                 throw new HttpRequestException(msg);
             }
+
             return true;
         }
     }

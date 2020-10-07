@@ -15,32 +15,32 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Text.Json.Serialization;
 
-    ///<summary>A bounded extent of access that is possible to perform on a resource set. In authorization policy terminology,
+    /// <summary>A bounded extent of access that is possible to perform on a resource set. In authorization policy terminology,
     /// a scope is one of the potentially many "verbs" that can logically apply to a resource set ("object").
     /// For more details, see "https://docs.kantarainitiative.org/uma/draft-oauth-resource-reg.html#rfc.section.2.1".</summary>.
     public class Scope
     {
         /// <summary>Gets or sets the scope ID.</summary>
-
-        public string? id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>Gets or sets the scope name.</summary>
-        public string? name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>Gets or sets the scope icon URI.</summary>
-        public string? iconUri { get; set; }
+        public Uri? IconUri { get; set; }
 
-        /// <summary>Gets or sets the scope policies.</summary>
-        public List<AccessPolicy>? policies { get; set; }
+        /// <summary>Gets the scope policies.</summary>
+        public List<AccessPolicy>? Policies { get; } = new List<AccessPolicy>();
 
-        /// <summary>Gets or sets the scope resources.</summary>
-        public List<ProtectedResource>? resources { get; set; }
+        /// <summary>Gets the scope resources.</summary>
+        public List<ProtectedResource>? Resources { get; } = new List<ProtectedResource>();
 
         /// <summary>Gets or sets the scope displayName.</summary>
-        public string? displayName { get; set; }
+        public string? DisplayName { get; set; }
     }
 }

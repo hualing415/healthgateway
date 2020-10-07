@@ -28,13 +28,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// Gets the truested-certs.
         /// </summary>
         [JsonPropertyName("trusted-certs")]
-        public List<string>? TrustedCertificates { get; }
+        public List<string>? TrustedCertificates { get; } = new List<string>();
 
         /// <summary>
         /// Gets the allowed-origins.
         /// </summary>
         [JsonPropertyName("allowed-origins")]
-        public List<string>? AllowedOrigins { get; }
+        public List<string>? AllowedOrigins { get; } = new List<string>();
 
         /// <summary>
         /// Gets the realm_access.
@@ -46,7 +46,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// Gets the resource_access.
         /// </summary>
         [JsonPropertyName("resource_access")]
-        public Dictionary<string, Access>? ResourceAccess { get; }
+        public Dictionary<string, Access> ResourceAccess { get; } = new Dictionary<string, Access>();
 
         /// <summary>
         /// Gets the authorization.
@@ -66,5 +66,4 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         [JsonPropertyName("scope")]
         public string? Scope { get; }
     }
-
 }

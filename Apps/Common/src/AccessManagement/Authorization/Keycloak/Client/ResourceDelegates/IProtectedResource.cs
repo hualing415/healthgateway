@@ -77,6 +77,5 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns> @return an array of strings with the resource ids.</returns>
         public Task<string[]> FindAll(string token);
-
     }
 }

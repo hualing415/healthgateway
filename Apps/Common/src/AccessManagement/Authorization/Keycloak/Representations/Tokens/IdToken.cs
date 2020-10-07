@@ -102,7 +102,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         public string? Email { get; }
 
         /// <summary>
-        /// Gets the email_verified flag.
+        /// Gets a value indicating whether the email_verified flag is set.
         /// </summary>
         [JsonPropertyName("email_verified")]
         public bool EmailVerified { get; } = false;
@@ -138,19 +138,19 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         public string? PhoneNumber { get; }
 
         /// <summary>
-        /// Gets the phone_number_verified flag.
+        /// Gets a value indicating whether the phone_number_verified flag is set.
         /// </summary>
         [JsonPropertyName("phone_number_verified")]
         public bool PhoneNumberVerified { get; } = false;
 
         /// <summary>
-        /// Gets the address as an <cref name="AddressClaimSet"/>.
+        /// Gets a value for the address as an <see cref="AddressClaimSet"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public AddressClaimSet? Address { get; }
 
         /// <summary>
-        /// Gets the updated_at timestamp (long).
+        /// Gets a value for the updated_at timestamp (long).
         /// </summary>
         [JsonPropertyName("updated_at")]
         public long UpdatedAt { get; }

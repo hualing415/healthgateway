@@ -56,12 +56,12 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
 
         /// <summary>
         /// Gets or sets the Metadata.
-        /// </summary>       
+        /// </summary>
         public RequestMetadata? Metadata { get; set; }
 
         /// <summary>
         /// Gets or sets the Audience.
-        /// </summary>  
+        /// </summary>
         public string? Audience { get; set; }
 
         /// <summary>
@@ -70,18 +70,18 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         public string? SubjectToken { get; set; }
 
         /// <summary>
-        /// Gets or sets the SubmitRequest.
-        /// </summary>      
-        public bool SubmitRequest { get; set; } = false;
+        /// Gets or sets a value indicating whether the SubmitRequest happened.
+        /// </summary>
+        public bool SubmitRequest { get; set; }
 
         /// <summary>
-        /// Gets or sets the dictionary of a list of claims.
-        /// </summary>  
-        public Dictionary<string, List<string>>? Claims { get; set; }
+        /// Gets the dictionary of a list of claims.
+        /// </summary>
+        public Dictionary<string, List<string>>? Claims { get; } = new Dictionary<string, List<string>>();
 
         /// <summary>
         /// Gets or sets the AccessToken.
-        /// </summary>          
+        /// </summary>
         public AccessToken? Rpt { get; set; }
 
         /// <summary>

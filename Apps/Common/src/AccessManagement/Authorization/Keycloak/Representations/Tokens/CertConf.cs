@@ -29,6 +29,5 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// </summary>
         [JsonPropertyName("x5t#S256")]
         public string? CertThumbprint { get; }
-
     }
 }

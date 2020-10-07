@@ -1,7 +1,7 @@
 //-------------------------------------------------------------------------
 // Copyright © 2019 Province of British Columbia
 //
-// Licensed under the Apache License, Version 2.0 (the "License")];
+// Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
@@ -34,13 +34,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
         /// Gets or sets the authorization_endpoint.
         /// </summary>
         [JsonPropertyName("authorization_endpoint")]
-        public String AuthorizationEndpoint { get; set; } = string.Empty;
+        public string AuthorizationEndpoint { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the token_endpoint.
         /// </summary>
         [JsonPropertyName("token_endpoint")]
-        public String TokenEndpoint { get; set; } = string.Empty;
+        public string TokenEndpoint { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the introspection_endpoint.
@@ -52,25 +52,25 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
         /// Gets or sets the userinfo_endpoint.
         /// </summary>
         [JsonPropertyName("userinfo_endpoint")]
-        public String UserinfoEndpoint { get; set; } = string.Empty;
+        public string UserinfoEndpoint { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the end_session_endpoint.
         /// </summary>
         [JsonPropertyName("end_session_endpoint")]
-        public String LogoutEndpoint { get; set; } = string.Empty;
+        public string LogoutEndpoint { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the jwks_uri.
         /// </summary>
         [JsonPropertyName("jwks_uri")]
-        public String JwksUri { get; set; } = string.Empty;
+        public Uri? JwksUri { get; set; }
 
         /// <summary>
         /// Gets or sets the check_session_iframe.
         /// </summary>
         [JsonPropertyName("check_session_iframe")]
-        public String CheckSessionIframe { get; set; } = string.Empty;
+        public string CheckSessionIframe { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the grant_types_supported.
@@ -145,10 +145,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
         public List<string> ClaimTypesSupported { get; set; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the claims_parameter_supported.
+        /// Gets or sets a value indicating whether the  claims parameter is supported.
         /// </summary>
         [JsonPropertyName("claims_parameter_supported")]
-        public bool ClaimsParameterSupported { get; set; } = false;
+        public bool ClaimsParameterSupported { get; set; }
 
         /// <summary>
         /// Gets or sets the scopes_supported.
@@ -157,13 +157,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
         public List<string> ScopesSupported { get; set; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the request_parameter_supported.
+        /// Gets or sets a value indicating whether the request parameter is supported.
         /// </summary>
         [JsonPropertyName("request_parameter_supported")]
-        public bool RequestParameterSupported  { get; set; } = false;
+        public bool RequestParameterSupported { get; set; } = false;
 
         /// <summary>
-        /// Gets or sets the request_uri_parameter_supported.
+        /// Gets or sets a value indicating whether the Uri parameter is supported.
         /// </summary>
         [JsonPropertyName("request_uri_parameter_supported")]
         public bool RequestUriParameterSupported { get; set; } = false;

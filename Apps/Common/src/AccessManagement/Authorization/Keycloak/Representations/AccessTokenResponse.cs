@@ -17,7 +17,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
 {
     using HealthGateway.Common.AccessManagement.Authentication.Models;
 
-
     /// <summary>
     /// OAuth 2.0 Access Token Response json.
     /// </summary>

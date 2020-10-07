@@ -28,26 +28,22 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// Gets the roles.
         /// </summary>
         [JsonPropertyName("roles")]
-        public List<string>? Roles { get; }
+        public List<string> Roles { get; } = new List<string>();
 
         /// <summary>
-        /// Gets the verify_caller flag.
+        /// Gets a value indicating whether verify_caller flag is set.
         /// </summary>
         [JsonPropertyName("verify_caller")]
-        public bool VerifyCaller { get; } = false;
+        public bool VerifyCaller { get; }
 
         /// <summary>
         /// Checks if the Access Token has the specified role.
         /// </summary>
         /// <param name="role">The role to check.</param>
         /// <returns>A boolean whether the user is in role.</returns>
-        public bool isUserInRole(string role)
+        public bool IsUserInRole(string role)
         {
-            if (Roles == null)
-            {
-                return false;
-            }
-            return Roles.Contains(role);
+            return this.Roles.Contains(role);
         }
     }
 }

@@ -16,26 +16,23 @@
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util
 {
     using System;
-    using System.Globalization;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
-    using System.Text.Json;
-
     using System.Threading.Tasks;
 
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation.Tokens;
 
-
     /// <summary>Extensions for HttpClient to handle OAuth 2.0 UMA.</summary>
     public static class HttpClientExtensions
     {
-        /// <summary>Sets the Bearer Token Head for UMA calls</summary>
+        /// <summary>Sets the Bearer Token Head for UMA calls.</summary>
         /// <param name="httpClient">The target of this extension method.</param>
-        /// <param name="base64BearerToken">The OAuth 2 Access Token base 64 encoded</param>
+        /// <param name="base64BearerToken">The OAuth 2 Access Token base 64 encoded.</param>
         public static void BearerTokenAuthorization(this HttpClient httpClient, string base64BearerToken)
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", base64BearerToken);
@@ -43,8 +40,9 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Ut
 
         /// <summary>Sets the UMA multipart form parameters from the AuthorizationRequest provided and posts the request.</summary>
         /// <param name="httpClient">The target of this extension method.</param>
-        /// <param name="uri">The <cref name="Uri"/> endpoint to post to.</param>
-        /// <param name="request">An <cref name="AuthorizationRequest"/> request.</param>
+        /// <param name="uri">The <see cref="Uri"/> endpoint to post to.</param>
+        /// <param name="request">An <see cref="AuthorizationRequest"/> request.</param>
+        /// <returns>An HttpResponseMessage.</returns>
         public static Task<HttpResponseMessage> PostUmaAsync(this HttpClient httpClient, Uri uri, AuthorizationRequest request)
         {
             string? ticket = request.Ticket;
@@ -52,11 +50,11 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Ut
 
             if (ticket == null && permissionTicketToken == null)
             {
-                throw new Exception("You must either provide a permission ticket or the permissions you want to request.");
+                throw new ArgumentException("You must either provide a permission ticket or the permissions you want to request.");
             }
 
             Dictionary<string, string> paramDict = new Dictionary<string, string>();
-            paramDict.Add(OAuth2Constants.UMA_GRANT_TYPE, OAuth2Constants.GRANT_TYPE);
+            paramDict.Add(OAuth2Constants.UmaGrantType, OAuth2Constants.GrantType);
             paramDict.Add("ticket", ticket!);
             paramDict.Add("claim_token", request.ClaimToken!);
             paramDict.Add("claim_token_format", request.ClaimTokenFormat!);
@@ -85,13 +83,15 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Ut
                         foreach (string scope in scopes)
                         {
                             string val = value.ToString();
-                            if (!val.EndsWith("#"))
+                            if (!val.EndsWith('#'))
                             {
                                 value.Append(',');
                             }
+
                             value.Append(scope);
                         }
                     }
+
                     paramDict.Add(value.ToString(), "permission");
                 }
             }
