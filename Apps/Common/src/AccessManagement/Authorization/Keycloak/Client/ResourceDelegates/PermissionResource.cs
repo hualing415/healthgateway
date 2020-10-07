@@ -25,7 +25,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using Microsoft.Extensions.Logging;
 
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation;
-    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util;
 
     using HealthGateway.Common.Services;
@@ -36,7 +35,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     {
         private readonly ILogger logger;
 
-        private readonly IServerConfigurationDelegate serverConfigurationDelegate;
+        private readonly IServerConfigurationResource serverConfigurationDelegate;
 
 
         /// <summary>The injected HttpClientService.</summary>
@@ -49,7 +48,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="httpClientService">injected HTTP client service.</param>
         /// <param name="serverConfigurationDelegate">The keycloak UMA configuration delegate.</param>
         public PermissionResource(ILogger<PermissionResource> logger,
-            IServerConfigurationDelegate serverConfigurationDelegate,
+            IServerConfigurationResource serverConfigurationDelegate,
             IHttpClientService httpClientService)
         {
             this.logger = logger;

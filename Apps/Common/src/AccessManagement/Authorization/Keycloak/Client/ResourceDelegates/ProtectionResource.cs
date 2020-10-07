@@ -41,7 +41,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         private readonly IKeycloakConfiguration keycloakConfiguration;
 
         /// <summary>The keycloak UMA server configuration.</summary>
-        private readonly IServerConfigurationDelegate serverConfigurationDelegate;
+        private readonly IServerConfigurationResource serverConfigurationDelegate;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorizationResource"/> class.
@@ -52,7 +52,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="serverConfigurationDelegate">The injected server-side configuration settings.</param>
         public ProtectionResource(ILogger<ProtectionResource> logger,
             IKeycloakConfiguration keycloakConfiguration,
-            IServerConfigurationDelegate serverConfigurationDelegate,
+            IServerConfigurationResource serverConfigurationDelegate,
             IHttpClientService httpClientService)
         {
             this.logger = logger;

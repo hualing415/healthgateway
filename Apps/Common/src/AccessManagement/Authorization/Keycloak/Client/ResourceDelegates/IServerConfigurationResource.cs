@@ -19,7 +19,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
 
     /// <summary>Interface for the ServerConfiguration access delegate (from a well-known keycloak end point).</summary>
-    public interface IServerConfigurationDelegate
+    public interface IServerConfigurationResource
     {
 
         /// <summary>Gets the ServerConfiguration.</summary>

@@ -23,6 +23,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client
     using Microsoft.Extensions.Logging;
 
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration;
+    using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Resource;
 
 
     /// <summary>
@@ -45,9 +46,18 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client
         private readonly IHttpClientService httpClientService;
 
         /// <summary>
-        /// The  keycloak configuration.
+        /// The keycloak configuration.
         /// </summary>
         private readonly IKeycloakConfiguration keycloakConfiguration;
+
+        /// <summary>The UMA 2.0 server configuration resource.</summary>
+        public IServerConfigurationResource ServerConfiguration { get; }
+
+        /// <summary>The protection resource</summary>
+        public IProtectionResource Protection { get; }
+
+        /// <summary>The authorization resource</summary>
+        public IAuthorizationResource Authorization { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthzClient"/> class.
@@ -55,14 +65,26 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client
         /// <param name="logger">The injected logger provider.</param>
         /// <param name="httpClientService">injected HTTP client service.</param>
         /// <param name="keycloakConfiguration">Injected keycloak Configuration.</param>
+        /// <param name="serverConfigurationResource">Injected server configuration resource.</param>
+        /// <param name="authorizationResource">Injected authorization resource.</param>
+        /// <param name="protectionResource">Injected protection resource.</param>
+
         public AuthzClient(
             ILogger<AuthzClient> logger,
             IHttpClientService httpClientService,
-            IKeycloakConfiguration keycloakConfiguration)
+            IKeycloakConfiguration keycloakConfiguration,
+            IServerConfigurationResource serverConfigurationResource,
+            IAuthorizationResource authorizationResource,
+            IProtectionResource protectionResource)
         {
             this.logger = logger;
             this.httpClientService = httpClientService!;
             this.keycloakConfiguration = keycloakConfiguration;
+
+            // publicly exposed but injected resources.
+            this.ServerConfiguration = serverConfigurationResource;
+            this.Protection = protectionResource;
+            this.Authorization = authorizationResource;
         }
     }
 }

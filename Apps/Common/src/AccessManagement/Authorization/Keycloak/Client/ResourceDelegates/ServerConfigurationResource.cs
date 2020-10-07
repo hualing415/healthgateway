@@ -30,7 +30,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     ///
     /// <summary>Gets the uma2 server configuration settings from the well-known-endpoint.</summary>
     ///
-    public class ServerConfigurationDelegate : IServerConfigurationDelegate
+    public class ServerConfigurationResource : IServerConfigurationResource
     {
         private readonly ILogger logger;
         private readonly IHttpClientService httpClientService;
@@ -54,7 +54,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="logger">The injected logger.</param>
         /// <param name="httpClientService">The injected httpClientService.</param>
         /// <param name="keycloakConfiguration">The injected keycloak configuration.</param>
-        public ServerConfigurationDelegate(ILogger<ServerConfigurationDelegate> logger,
+        public ServerConfigurationResource(ILogger<ServerConfigurationResource> logger,
             IHttpClientService httpClientService,
             IKeycloakConfiguration keycloakConfiguration)
         {

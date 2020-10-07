@@ -37,7 +37,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         private readonly ILogger logger;
         private readonly IHttpClientService httpClientService;
 
-        private readonly IServerConfigurationDelegate serverConfigurationDelegate;
+        private readonly IServerConfigurationResource serverConfigurationDelegate;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorizationResource"/> class.
@@ -46,7 +46,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="httpClientService">injected HTTP client service.</param>
         /// <param name="serverConfigurationDelegate">The injected UMA 2 server-side configuration delegate.</param>
         public ProtectedResource(ILogger<PermissionResource> logger,
-            IServerConfigurationDelegate serverConfigurationDelegate,
+            IServerConfigurationResource serverConfigurationDelegate,
             IHttpClientService httpClientService)
         {
             this.logger = logger;
