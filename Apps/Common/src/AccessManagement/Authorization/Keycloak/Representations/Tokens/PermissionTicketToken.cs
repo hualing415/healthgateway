@@ -22,19 +22,18 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     public class PermissionTicketToken : JwtPayload
     {
         /// <summary>Initializes a new instance of the <see cref="PermissionTicketToken"/> class. </summary>
+        public PermissionTicketToken()
+        {
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="PermissionTicketToken"/> class. </summary>
         /// <param name="permissions">A List of Permission objects.</param>
         public PermissionTicketToken(List<Permission> permissions)
         {
             this.Permissions = permissions;
         }
 
-        /// <summary>Initializes a new instance of the <see cref="PermissionTicketToken"/> class. </summary>
-        public PermissionTicketToken()
-        {
-            this.Permissions = new List<Permission>();
-        }
-
         /// <summary>Gets the Permissions. </summary>
-        public List<Permission>? Permissions { get; }
+        public List<Permission> Permissions { get; } = new List<Permission>();
     }
 }

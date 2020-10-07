@@ -50,9 +50,9 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         public string? Scope { get; set; }
 
         /// <summary>
-        /// Gets or sets the Permissions.
+        /// Gets the Permissions.
         /// </summary>
-        public PermissionTicketToken? Permissions { get; set; }
+        public PermissionTicketToken? Permissions { get; } = new PermissionTicketToken();
 
         /// <summary>
         /// Gets or sets the Metadata.
@@ -80,9 +80,9 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         public Dictionary<string, List<string>>? Claims { get; } = new Dictionary<string, List<string>>();
 
         /// <summary>
-        /// Gets or sets the AccessToken.
+        /// Gets the AccessToken.
         /// </summary>
-        public AccessToken? Rpt { get; set; }
+        public AccessToken Rpt { get; } = new AccessToken();
 
         /// <summary>
         /// Gets or sets the relying party token, RptToken.

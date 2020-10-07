@@ -73,46 +73,46 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
         public string CheckSessionIframe { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the grant_types_supported.
+        /// Gets the grant_types_supported.
         /// </summary>
         [JsonPropertyName("grant_types_supported")]
-        public List<string> GrantTypesSupported { get; set; } = new List<string>();
+        public List<string> GrantTypesSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the response_types_supported.
+        /// Gets the response_types_supported.
         /// </summary>
         [JsonPropertyName("response_types_supported")]
-        public List<string> ResponseTypesSupported { get; set; } = new List<string>();
+        public List<string> ResponseTypesSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the subject_types_supported.
+        /// Gets the subject_types_supported.
         /// </summary>
         [JsonPropertyName("subject_types_supported")]
-        public List<string> SubjectTypesSupported { get; set; } = new List<string>();
+        public List<string> SubjectTypesSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the id_token_signing_alg_values_supported.
+        /// Gets the id_token_signing_alg_values_supported.
         /// </summary>
         [JsonPropertyName("id_token_signing_alg_values_supported")]
-        public List<string> IdTokenSigningAlgValuesSupported { get; set; } = new List<string>();
+        public List<string> IdTokenSigningAlgValuesSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the userinfo_signing_alg_values_supported.
+        /// Gets the userinfo_signing_alg_values_supported.
         /// </summary>
         [JsonPropertyName("userinfo_signing_alg_values_supported")]
-        public List<string> UserInfoSigningAlgValuesSupported { get; set; } = new List<string>();
+        public List<string> UserInfoSigningAlgValuesSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the request_object_signing_alg_values_supported.
+        /// Gets the request_object_signing_alg_values_supported.
         /// </summary>
         [JsonPropertyName("request_object_signing_alg_values_supported")]
-        public List<string> RequestObjectSigningAlgValuesSupported { get; set; } = new List<string>();
+        public List<string> RequestObjectSigningAlgValuesSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the response_modes_supported.
+        /// Gets the response_modes_supported.
         /// </summary>
         [JsonPropertyName("response_modes_supported")]
-        public List<string> ResponseModesSupported { get; set; } = new List<string>();
+        public List<string> ResponseModesSupported { get; } = new List<string>();
 
         /// <summary>
         /// Gets or sets the registration_endpoint.
@@ -121,28 +121,28 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
         public string RegistrationEndpoint { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the token_endpoint_auth_methods_supported.
+        /// Gets the token_endpoint_auth_methods_supported.
         /// </summary>
         [JsonPropertyName("token_endpoint_auth_methods_supported")]
-        public List<string> TokenEndpointAuthMethodsSupported { get; set; } = new List<string>();
+        public List<string> TokenEndpointAuthMethodsSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the token_endpoint_auth_signing_alg_values_supported.
+        /// Gets the token_endpoint_auth_signing_alg_values_supported.
         /// </summary>
         [JsonPropertyName("token_endpoint_auth_signing_alg_values_supported")]
-        public List<string> TokenEndpointAuthSigningAlgValuesSupported { get; set; } = new List<string>();
+        public List<string> TokenEndpointAuthSigningAlgValuesSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the claims_supported.
+        /// Gets the claims_supported.
         /// </summary>
         [JsonPropertyName("claims_supported")]
-        public List<string> ClaimsSupported { get; set; } = new List<string>();
+        public List<string> ClaimsSupported { get; } = new List<string>();
 
         /// <summary>
-        /// Gets or sets the claim_types_supported.
+        /// Gets the claim_types_supported.
         /// </summary>
         [JsonPropertyName("claim_types_supported")]
-        public List<string> ClaimTypesSupported { get; set; } = new List<string>();
+        public List<string> ClaimTypesSupported { get; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value indicating whether the  claims parameter is supported.
@@ -151,10 +151,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
         public bool ClaimsParameterSupported { get; set; }
 
         /// <summary>
-        /// Gets or sets the scopes_supported.
+        /// Gets the scopes_supported.
         /// </summary>
         [JsonPropertyName("scopes_supported")]
-        public List<string> ScopesSupported { get; set; } = new List<string>();
+        public List<string> ScopesSupported { get; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value indicating whether the request parameter is supported.
