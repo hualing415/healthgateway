@@ -1,0 +1,40 @@
+name: 1.1.0$(Rev:.r) #Build number
+
+pr:
+    branches:
+        include:
+        - dev
+    paths:
+        include:
+        - Apps/UserManagedAccess
+        - Apps/Common
+
+resources:
+ pipelines:
+   - pipeline: Common
+     source: Common
+     trigger:
+       branches:
+       - dev
+       
+trigger:
+    batch: "true"
+    branches:
+        include:
+        - dev
+    paths:
+        include:
+        - Apps/UserManagedAccess
+
+pool:
+    name: "HealthGateway"
+
+extends:
+  template: /Build/hg.yaml
+  parameters:
+    Application: UserManagedAccess
+    DotNetTests: true
+    FunctionalTests: false
+    NPMInstall: false
+    NPMTests: false
+
