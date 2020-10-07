@@ -61,10 +61,9 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
             builder.Append(this.ResourceName);
             builder.Append(", scopes=");
             builder.Append(this.Scopes);
-            builder.Append("}");
+            builder.Append('}');
 
             return builder.ToString();
-
         }
     }
 }

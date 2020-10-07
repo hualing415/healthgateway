@@ -25,10 +25,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     ///
     public interface IProtectionResource
     {
-        /// <summary>Introspects the given <code>rpt</code> using the token introspection endpoint.</summary>
+        /// <summary>Introspects the given rpt using the token introspection endpoint.</summary>
         /// <param name="rpt">the Requesting Party Token to Introspect.</param>
         /// <param name="token">The bearer token to use for authorization.</param>
         /// <returns>A TokenIntrospectionResponse.</returns>
-        public Task<TokenIntrospectionResponse> introspectRequestingPartyToken(string rpt, string token);
+        public Task<TokenIntrospectionResponse> IntrospectRequestingPartyToken(string rpt, string token);
     }
 }

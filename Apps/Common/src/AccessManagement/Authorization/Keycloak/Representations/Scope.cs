@@ -35,10 +35,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         public string? iconUri { get; set; }
 
         /// <summary>Gets or sets the scope policies.</summary>
-        public List<Policy>? policies { get; set; }
+        public List<AccessPolicy>? policies { get; set; }
 
         /// <summary>Gets or sets the scope resources.</summary>
-        public List<Resource>? resources { get; set; }
+        public List<ProtectedResource>? resources { get; set; }
 
         /// <summary>Gets or sets the scope displayName.</summary>
         public string? displayName { get; set; }

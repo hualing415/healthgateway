@@ -15,10 +15,6 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Configuration
 {
-
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Authentication;
-
     using Microsoft.Extensions.Configuration;
 
     /// <summary>
@@ -30,16 +26,16 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Co
 
         private static string ConfigurationSectionKey = "Keycloak";
 
-        ///<inherited/>
+        ///<inheritdoc/>
         public string Audience { get; set; } = string.Empty;
 
-        ///<inherited/>
+        ///<inheritdoc/>
         public string AuthServerUrl { get; set; } = string.Empty;
 
-        ///<inherited/>
+        ///<inheritdoc/>
         public string Realm { get; set; } = string.Empty;
 
-        /// <summary>Creates a new KeycloakConfiguration instance.</summary>
+        /// <summary>Initializes a new instance of the <see cref="KeycloakConfiguration"/> class.</summary>
         /// <param name="configuration">The injected <cref name="IConfiguration"/> configuration object.</param>
         public KeycloakConfiguration(IConfiguration configuration)
         {

@@ -68,7 +68,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client
         /// <param name="serverConfigurationResource">Injected server configuration resource.</param>
         /// <param name="authorizationResource">Injected authorization resource.</param>
         /// <param name="protectionResource">Injected protection resource.</param>
-
         public AuthzClient(
             ILogger<AuthzClient> logger,
             IHttpClientService httpClientService,

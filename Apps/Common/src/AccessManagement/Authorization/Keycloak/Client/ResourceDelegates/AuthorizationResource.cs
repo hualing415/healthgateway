@@ -43,14 +43,14 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
         private readonly IHttpClientService httpClientService;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationResource"/> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="AuthorizationResource"/> class.</summary>
         /// <param name="logger">injected logger service.</param>
         /// <param name="httpClientService">injected HTTP client service.</param>
         /// <param name="keycloakConfiguration">The keycloak settings configuration.</param>
         /// <param name="serverConfigurationDelegate">uma2 server-side configuration settings delegate.</param>
-        public AuthorizationResource(ILogger<AuthorizationResource> logger, IKeycloakConfiguration keycloakConfiguration,
+        public AuthorizationResource(
+            ILogger<AuthorizationResource> logger, 
+            IKeycloakConfiguration keycloakConfiguration,
             IServerConfigurationResource serverConfigurationDelegate,
             IHttpClientService httpClientService)
         {
@@ -60,12 +60,12 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             this.httpClientService = httpClientService;
         }
 
-        /// <inherited/>
-        public async Task<AuthorizationResponse> authorize(AuthorizationRequest request, string accessToken)
+        /// <inheritdoc/>
+        public async Task<AuthorizationResponse> Authorize(AuthorizationRequest request, string accessToken)
         {
-            if (request.Audience == null)
+            if (string.IsNullOrEmpty(request.Audience))
             {
-                request.Audience = keycloakConfiguration.Audience;
+                request.Audience = this.keycloakConfiguration.Audience;
             }
 
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
@@ -76,11 +76,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             client.BaseAddress = new Uri(requestUri);
 
             client.BearerTokenAuthorization(accessToken);
-
-            if (request.Audience == string.Empty)
-            {
-                request.Audience = this.keycloakConfiguration.Audience;
-            }
 
             HttpResponseMessage response = await client.PostUmaAsync(new Uri(requestUri), request).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)

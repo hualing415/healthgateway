@@ -21,43 +21,43 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     ///<summary> A generic Policy to inherit from.</summary>
     public class AbstractPolicy : IPolicy
     {
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("id")]
         public string? Id { get; set; }
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("type")]
         public string? Type { get; set; }
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("policies")]
         public List<string>? Policies { get; set; }
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("resources")]
         public List<string>? Resources { get; set; }
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("scopes")]
         public List<string>? Scopes { get; set; }
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("logic")]
         public Logic Logic { get; set; } = Logic.POSITIVE;
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("decision_strategy")]
         public DecisionStrategy DecisionStrategy { get; set; } = DecisionStrategy.UNANIMOUS;
 
-        /// <inherited/>
+        /// <inheritdoc/>
         [JsonPropertyName("owner")]
         public string? Owner { get; set; }
 

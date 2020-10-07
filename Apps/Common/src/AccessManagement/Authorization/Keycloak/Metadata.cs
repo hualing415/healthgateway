@@ -16,7 +16,7 @@
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak
 {
     /// <summary>Metadata, a component of <cref name="AuthorizationRequest"/>.</summary>
-    public class Metadata
+    public class RequestMetadata
     {
         /// <summary>Gets or sets whether to include Resource Name.</summary>
         public bool IncludeResourceName { get; set; }

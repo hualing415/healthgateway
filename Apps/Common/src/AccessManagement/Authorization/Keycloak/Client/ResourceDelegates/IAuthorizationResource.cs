@@ -25,10 +25,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     public interface IAuthorizationResource
     {
         /// <summary>Query the server for permissions given an <cref name="AuthorizationRequest"/>.</summary>
-        /// <param name="request"> an <cref name="AuthorizationRequest"/></param>
+        /// <param name="request">A <cref name="AuthorizationRequest"/> instance.</param>
         /// <param name="accessToken">A Base64 encoded OAuth 2.0 accessToken from an authentication event.</param>
         /// <returns>An <cref name="AuthorizationRequest"/>with a RPT holding all granted permissions.</returns>
-        public Task<AuthorizationResponse> authorize(AuthorizationRequest request, string accessToken);
+        public Task<AuthorizationResponse> Authorize(AuthorizationRequest request, string accessToken);
 
     }
 }

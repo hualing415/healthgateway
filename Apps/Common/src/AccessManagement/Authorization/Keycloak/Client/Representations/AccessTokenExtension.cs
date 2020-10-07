@@ -32,13 +32,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <returns>Returns true if the AccessToken has the permissions for the scope and resourceName.</returns>
         public static bool HasPermission(this AccessToken accessToken, string? resourceName, string? scopeName)
         {
-            Authorization? authorization = accessToken.Authorization;
+            ResourceAuthorization? authorization = accessToken.ResourceAuthorization;
 
             if (authorization != null)
             {
                 foreach (Permission permission in authorization.Permissions!)
                 {
-                    if (resourceName!.Equals(permission.ResourceName) || resourceName!.Equals(permission.ResourceId))
+                    if ((resourceName! == permission.ResourceName) || (resourceName! == permission.ResourceId))
                     {
                         if ((scopeName == null) || permission.Scopes!.Contains(scopeName))
                         {
@@ -66,8 +66,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <returns>Returns true if the AccessToken has the permissions for the scopeName.</returns>
         public static bool HasScopePermission(this AccessToken accessToken, string scopeName)
         {
-
-            Authorization authorization = accessToken.Authorization!;
+            ResourceAuthorization authorization = accessToken.ResourceAuthorization!;
 
             if (authorization != null)
             {
@@ -89,7 +88,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <returns>Returns true if the AccessToken has the permissions for the scopeName.</returns>
         public static List<Permission> GetPermissions(this AccessToken accessToken)
         {
-            Authorization authorization = accessToken.Authorization!;
+            ResourceAuthorization authorization = accessToken.ResourceAuthorization!;
 
             if (authorization == null)
             {

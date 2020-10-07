@@ -29,31 +29,31 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="request"> the <cref name="PermissionRequest"/> representing the resource and scope(s).</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>Permission response holding a permission ticket with the requested permissions.</returns>
-        public Task<PermissionResponse> create(PermissionRequest request, string token);
+        public Task<PermissionResponse> Create(PermissionRequest request, string token);
 
         /// <summary>Creates new permission ticket(s) for a set of resources and scope(s).</summary>
         /// <param name="requests"> a List of <cref name="PermissionRequest"/> representing the resource and scope(s).</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>Permission response holding a permission ticket with the requested permissions.</returns>
-        public Task<PermissionResponse> create(List<PermissionRequest> requests, string token);
+        public Task<PermissionResponse> Create(List<PermissionRequest> requests, string token);
 
         /// <summary>Creates a new uma permission for a single resource and scope(s).</summary>
         /// <param name="ticket">The <cref name="PermissionTicketRepresentation"/> representing the resource and scope(s).</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
-        /// <returns>A permission response holding the permission ticket representation</returns>
-        public Task<PermissionTicket> create(PermissionTicket ticket, string token);
+        /// <returns>A permission response holding the permission ticket representation.</returns>
+        public Task<PermissionTicket> Create(PermissionTicket ticket, string token);
 
         /// <summary>Query the server for any permission ticket associated with the given scopeId.</summary>
-        /// <param name="scopeId">The scopeId the scope id</param>
+        /// <param name="scopeId">The scopeId the scope id.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
-        /// <returns>A list of permission tickets associated with the given scopeId</returns>
-        public Task<List<PermissionTicket>> findByScope(string scopeId, string token);
+        /// <returns>A list of permission tickets associated with the given scopeId.</returns>
+        public Task<List<PermissionTicket>> FindByScope(string scopeId, string token);
 
         /// <summary>Query the server for any permission ticket associated with the given scopeId.</summary>
         /// <param name="resourceId">The resourceId.</param>
         /// <param name="token">A valid base64 access_token from authenticing the caller.</param>
-        /// <returns>A list of permission tickets associated with the given scopeId</returns>
-        public Task<List<PermissionTicket>> findByResourceId(string resourceId, string token);
+        /// <returns>A list of permission tickets associated with the given scopeId.</returns>
+        public Task<List<PermissionTicket>> FindByResourceId(string resourceId, string token);
 
         /// <summary>Query the server for any permission ticket with the matching arguments.</summary>
         /// <param name="resourceId">The resource id or name.</param>
@@ -66,7 +66,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="maxResult">The maximum number of resources to retrieve.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>A list of permission tickets with the matching arguments.</returns>
-        public Task<List<PermissionTicket>> find(
+        public Task<List<PermissionTicket>> Find(
             string resourceId,
             string scopeId,
             string owner,
@@ -78,14 +78,15 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             string token);
 
         /// <summary>Updates a permission ticket.</summary>
-        /// <param name="ticket">The permission ticket</param>
+        /// <param name="ticket">The permission ticket.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
-        public Task<bool> update(PermissionTicket ticket, string token);
+        /// <returns>True when the permission ticket is updated.</returns>
+        public Task<bool> Update(PermissionTicket ticket, string token);
 
         /// <summary>Delete a permission ticket.</summary>
         /// <param name="ticketId">The id of the permission ticket to delete.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>True if the delete succeeded.</returns>
-        public Task<bool> delete(string ticketId, string token);
+        public Task<bool> Delete(string ticketId, string token);
     }
 }

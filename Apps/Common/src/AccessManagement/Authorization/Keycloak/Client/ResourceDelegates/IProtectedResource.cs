@@ -15,6 +15,7 @@
 //-------------------------------------------------------------------------
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Resource
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -26,26 +27,26 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
     public interface IProtectedResource
     {
         /// <summary>
-        /// Creates a new Resource on the authorization server. See <see cref="Resource"/> class.
+        /// Creates a new Resource on the authorization server. See <see cref="Keycloak.Representation.ProtectedResource"/> class.
         /// </summary>
         /// <param name="resource">The Resource data.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>The Resource created.</returns>
-        public Task<Resource> create(Resource resource, string token);
+        public Task<Keycloak.Representation.ProtectedResource> Create(Keycloak.Representation.ProtectedResource resource, string token);
 
         /// <summary>
-        /// Updates an existing Resource on the authorization server. See <see cref="Resource"/> class.
+        /// Updates an existing Resource on the authorization server. See <see cref="Keycloak.Representation.ProtectedResource"/> class.
         /// </summary>
         /// <param name="resource">The Resource to be updated.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>True when updated.</returns>
-        public Task<bool> update(Resource resource, string token);
+        public Task<bool> Update(Keycloak.Representation.ProtectedResource resource, string token);
 
         /// <summary>Deletes an existing user-managed Resource from the server.</summary>
         /// <param name="resourceId">The Resource identifier.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>True if the delete was successful.</returns>
-        public Task<bool> delete(string resourceId, string token);
+        public Task<bool> Delete(string resourceId, string token);
 
         /// <summary>
         /// Query the server for a resource given its id.
@@ -53,30 +54,29 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="resourceId">The Resource  ID to be found.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>The Resource found.</returns>
-        public Task<Resource> findById(string resourceId, string token);
+        public Task<Keycloak.Representation.ProtectedResource> FindById(string resourceId, string token);
 
         /// <summary>
         /// Query the server for a Resource with a given Uri.
-        /// This method queries the server for resources whose
         /// </summary>
-        /// <param name="uri">The string url to be found.</param>
+        /// <param name="uri">The url to be found.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>Returns a list of Resources that best matches the given Uri.</returns>
-        public Task<List<Resource>> findByUri(string uri, string token);
+        public Task<List<Keycloak.Representation.ProtectedResource>> FindByUri(Uri uri, string token);
 
         /// <summary>
         /// Query the server for a Resource with a given Uri.
-        /// This method queries the server for resources whose
+        /// This method queries the server for resources that match the Uri.
         /// </summary>
-        /// <param name="uri">The string url to be found.</param>
+        /// <param name="uri">The url to be found.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>Returns a list of Resources that best matches the given Uri.</returns>
-        public Task<List<Resource>> findByMatchingUri(string uri, string token);
+        public Task<List<Keycloak.Representation.ProtectedResource>> FindByMatchingUri(Uri uri, string token);
 
         /// <summary>Query the server for all resources.</summary>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
-        /// <returns> @return an array of strings with the resource ids</returns>
-        public Task<string[]> findAll(string token);
+        /// <returns> @return an array of strings with the resource ids.</returns>
+        public Task<string[]> FindAll(string token);
 
     }
 }

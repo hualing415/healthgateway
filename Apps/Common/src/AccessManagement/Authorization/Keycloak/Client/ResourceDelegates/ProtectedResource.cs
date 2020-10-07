@@ -39,13 +39,12 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
         private readonly IServerConfigurationResource serverConfigurationDelegate;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationResource"/> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ProtectedResource"/> class.</summary>
         /// <param name="logger">The injected logger provider.</param>
         /// <param name="httpClientService">injected HTTP client service.</param>
         /// <param name="serverConfigurationDelegate">The injected UMA 2 server-side configuration delegate.</param>
-        public ProtectedResource(ILogger<PermissionResource> logger,
+        public ProtectedResource(
+            ILogger<PermissionResource> logger,
             IServerConfigurationResource serverConfigurationDelegate,
             IHttpClientService httpClientService)
         {
@@ -54,8 +53,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             this.httpClientService = httpClientService;
         }
 
-        /// <inherited/>
-        public async Task<Resource> create(Resource resource, string token)
+        /// <inheritdoc/>
+        public async Task<Keycloak.Representation.ProtectedResource> Create(Keycloak.Representation.ProtectedResource resource, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -65,7 +64,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             string requestUrl = this.serverConfigurationDelegate.ServerConfiguration.ResourceRegistrationEndpoint;
             client.BaseAddress = new Uri(requestUrl);
 
-            string jsonOutput = JsonSerializer.Serialize<Resource>(resource);
+            string jsonOutput = JsonSerializer.Serialize<Keycloak.Representation.ProtectedResource>(resource);
 
             using (HttpContent content = new StringContent(jsonOutput))
             {
@@ -76,13 +75,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
                 }
 
                 string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                Resource resourceResponse = JsonSerializer.Deserialize<Resource>(result);
+                Keycloak.Representation.ProtectedResource resourceResponse = JsonSerializer.Deserialize<Keycloak.Representation.ProtectedResource>(result);
                 return resourceResponse;
             }
         }
 
-        /// <inherited/>
-        public async Task<bool> update(Resource resource, string token)
+        /// <inheritdoc/>
+        public async Task<bool> Update(Keycloak.Representation.ProtectedResource resource, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -92,7 +91,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             string requestUrl = this.serverConfigurationDelegate.ServerConfiguration.PermissionEndpoint + "/" + resource.Id;
             client.BaseAddress = new Uri(requestUrl);
 
-            string jsonOutput = JsonSerializer.Serialize<Resource>(resource);
+            string jsonOutput = JsonSerializer.Serialize<Keycloak.Representation.ProtectedResource>(resource);
 
             using (HttpContent content = new StringContent(jsonOutput))
             {
@@ -107,8 +106,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
         }
 
-        /// <inherited/>
-        public async Task<bool> delete(string resourceId, string token)
+        /// <inheritdoc/>
+        public async Task<bool> Delete(string resourceId, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -128,8 +127,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             return true;
         }
 
-        /// <inherited/>
-        public async Task<Resource> findById(string resourceId, string token)
+        /// <inheritdoc/>
+        public async Task<Keycloak.Representation.ProtectedResource> FindById(string resourceId, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -146,13 +145,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
 
             string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            Resource resourceResponse = JsonSerializer.Deserialize<Resource>(result);
+            Keycloak.Representation.ProtectedResource resourceResponse = JsonSerializer.Deserialize<Keycloak.Representation.ProtectedResource>(result);
             return resourceResponse;
         }
 
         /// <summary>
         /// Query the server for a Resource with a given Uri.
-        /// This method queries the server for resources whose
+        /// This method queries the server for resources who matches the parameters.
         /// </summary>
         /// <param name="resourceId">The resource ID.</param>
         /// <param name="name">The resource name.</param>
@@ -167,17 +166,18 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="maxResult">Max Result.  -1 for no limit.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>Returns a list of Resources that best matches the given Uri.</returns>
-        private async Task<List<Resource>> find(string? resourceId,
+        private async Task<List<Keycloak.Representation.ProtectedResource>> Find(
+                string? resourceId,
                 string? name,
-                string? uri,
+                Uri? uri,
                 string? owner,
                 string? type,
                 string? scope,
                 bool matchingUri,
                 bool exactName,
                 bool deep,
-                Int32? firstResult,
-                Int32? maxResult,
+                int? firstResult,
+                int? maxResult,
                 string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
@@ -192,9 +192,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             {
                 requestUrl = QueryHelpers.AddQueryString(requestUrl, "_id", resourceId);
             }
+            if (name != null)
+            {
+                requestUrl = QueryHelpers.AddQueryString(requestUrl, "name", name);
+            }
             if (uri != null)
             {
-                requestUrl = QueryHelpers.AddQueryString(requestUrl, "uri", uri);
+                requestUrl = QueryHelpers.AddQueryString(requestUrl, "uri", uri.AbsoluteUri);
             }
             if (owner != null)
             {
@@ -230,24 +234,24 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
 
             string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            List<Resource> resourceResponse = JsonSerializer.Deserialize<List<Resource>>(result);
+            List<Keycloak.Representation.ProtectedResource> resourceResponse = JsonSerializer.Deserialize<List<Keycloak.Representation.ProtectedResource>>(result);
             return resourceResponse;
         }
 
-        /// <inherited/>
-        public async Task<List<Resource>> findByUri(string uri, string token)
+        /// <inheritdoc/>
+        public async Task<List<Keycloak.Representation.ProtectedResource>> FindByUri(Uri uri, string token)
         {
-            return await this.find(null, null, uri, null, null, null, false, false, true, null, null, token);
+            return await this.Find(null, null, uri, null, null, null, false, false, true, null, null, token).ConfigureAwait(true);
         }
 
-        /// <inherited/>
-        public async Task<List<Resource>> findByMatchingUri(string uri, string token)
+        /// <inheritdoc/>
+        public async Task<List<Keycloak.Representation.ProtectedResource>> FindByMatchingUri(Uri uri, string token)
         {
-            return await this.find(null, null, uri, null, null, null, true, false, true, null, null, token);
+            return await this.Find(null, null, uri, null, null, null, true, false, true, null, null, token).ConfigureAwait(true);
         }
 
-        /// <inherited/>
-        public async Task<string[]> findAll(string token)
+        /// <inheritdoc/>
+        public async Task<string[]> FindAll(string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -258,7 +262,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             client.BaseAddress = new Uri(requestUrl);
             requestUrl = QueryHelpers.AddQueryString(requestUrl, "deep", "false");
 
-            HttpResponseMessage response = await client.GetAsync(new Uri(requestUrl)).ConfigureAwait(false);
+            HttpResponseMessage response = await client.GetAsync(new Uri(requestUrl)).ConfigureAwait(true);
             if (!response.IsSuccessStatusCode)
             {
                 this.logger.LogError($"findAll() returned with StatusCode := {response.StatusCode}.");

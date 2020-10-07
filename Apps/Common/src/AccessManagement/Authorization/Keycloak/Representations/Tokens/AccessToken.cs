@@ -52,7 +52,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// Gets the authorization.
         /// </summary>
         [JsonPropertyName("authorization")]
-        public Authorization? Authorization { get; }
+        public ResourceAuthorization? ResourceAuthorization { get; }
 
         /// <summary>
         /// Gets the cnf.

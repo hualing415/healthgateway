@@ -57,7 +57,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// <summary>
         /// Gets or sets the Metadata.
         /// </summary>       
-        public Metadata? Metadata { get; set; }
+        public RequestMetadata? Metadata { get; set; }
 
         /// <summary>
         /// Gets or sets the Audience.

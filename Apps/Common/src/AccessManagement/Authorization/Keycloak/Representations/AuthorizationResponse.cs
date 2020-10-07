@@ -24,9 +24,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// <summary>Gets or sets a boolean whether the token was upgraded.</summary>
         public bool Upgraded { get; set; } = false;
 
-        /// <summary>
-        /// Create an authorization response from an access token response.
-        /// </summary>
+        /// <summary>Initializes a new instance of a <cref name="AuthorizationResponse"/> class.</summary>
         /// <param name="response">An <cref name="AccessTokenResponse"/> response.</param>
         /// <param name="upgraded">A boolean whether the token was upgraded.</param>
         public AuthorizationResponse(AccessTokenResponse response, bool upgraded)

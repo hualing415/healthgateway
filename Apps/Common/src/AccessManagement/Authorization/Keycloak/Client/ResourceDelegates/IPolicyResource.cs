@@ -27,30 +27,31 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="resourceId">The resource identifier of the user managed access permission.</param>
         /// <param name="permission">The uma Permission to update.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
-        /// <returns>The created UmaPermission</returns>
-        public Task<UmaPermission> create(string resourceId, UmaPermission permission, string token);
+        /// <returns>The created UmaPermission.</returns>
+        public Task<UmaPermission> Create(string resourceId, UmaPermission permission, string token);
 
         /// <summary>Updates an existing user-managed permission.</summary>
         /// <param name="permission">The uma Permission to update.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>True if the delete was successful.</returns>
-        public Task<bool> update(UmaPermission permission, string token);
+        public Task<bool> Update(UmaPermission permission, string token);
 
         /// <summary>Deletes an existing user-managed permission.</summary>
         /// <param name="permissionId">The uma Permission identifier.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>True if the delete was successful.</returns>
-        public Task<bool> delete(string permissionId, string token);
+        public Task<bool> Delete(string permissionId, string token);
 
         /// <summary>Queries the server for permission matching the given parameters.</summary>
         /// <param name="resourceId">The resource identifier in context.</param>
-        /// <param name="name">The name of the permission</param>
+        /// <param name="name">The name of the permission.</param>
         /// <param name="scope">scope the scope associated with the permission.</param>
         /// <param name="firstResult">firstResult the position of the first resource to retrieve.</param>
         /// <param name="maxResult">maxResult the maximum number of resources to retrieve.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>A list of UmaPermissions, if found.</returns>
-        public Task<List<UmaPermission>> find(string resourceId,
+        public Task<List<UmaPermission>> Find(
+                string resourceId,
                 string name,
                 string scope,
                 int firstResult,
@@ -61,6 +62,6 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <param name="id">The uma permission identifier to find.</param>
         /// <param name="token"> A valid base64 access_token from authenticing the caller.</param>
         /// <returns>An UmaPermission, if found.</returns>
-        public Task<UmaPermission> findById(string id, string token);
+        public Task<UmaPermission> FindById(string id, string token);
     }
 }

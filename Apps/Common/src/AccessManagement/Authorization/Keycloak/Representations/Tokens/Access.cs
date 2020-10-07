@@ -43,7 +43,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
         /// <returns>A boolean whether the user is in role.</returns>
         public bool isUserInRole(string role)
         {
-            if (Roles == null) return false;
+            if (Roles == null)
+            {
+                return false;
+            }
             return Roles.Contains(role);
         }
     }

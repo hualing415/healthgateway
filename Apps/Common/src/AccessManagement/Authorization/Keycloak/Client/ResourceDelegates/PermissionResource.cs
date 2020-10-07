@@ -41,13 +41,12 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
         /// <summary>The injected HttpClientService.</summary>
         private readonly IHttpClientService httpClientService;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationResource"/> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="PermissionResource"/> class.</summary>
         /// <param name="logger">The injected logger provider.</param>
         /// <param name="httpClientService">injected HTTP client service.</param>
         /// <param name="serverConfigurationDelegate">The keycloak UMA configuration delegate.</param>
-        public PermissionResource(ILogger<PermissionResource> logger,
+        public PermissionResource(
+            ILogger<PermissionResource> logger,
             IServerConfigurationResource serverConfigurationDelegate,
             IHttpClientService httpClientService)
         {
@@ -56,8 +55,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             this.httpClientService = httpClientService;
         }
 
-        /// <inherited/>
-        public async Task<PermissionResponse> create(PermissionRequest request, string token)
+        /// <inheritdoc/>
+        public async Task<PermissionResponse> Create(PermissionRequest request, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -83,8 +82,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
         }
 
-        /// <inherited/>
-        public async Task<PermissionResponse> create(List<PermissionRequest> requests, string token)
+        /// <inheritdoc/>
+        public async Task<PermissionResponse> Create(List<PermissionRequest> requests, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -110,8 +109,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
         }
 
-        /// <inherited/>
-        public async Task<PermissionTicket> create(PermissionTicket ticket, string token)
+        /// <inheritdoc/>
+        public async Task<PermissionTicket> Create(PermissionTicket ticket, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -137,8 +136,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
         }
 
-        /// <inherited/>
-        public async Task<List<PermissionTicket>> findByScope(string scopeId, string token)
+        /// <inheritdoc/>
+        public async Task<List<PermissionTicket>> FindByScope(string scopeId, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -160,11 +159,10 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             string result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             List<PermissionTicket> permissionTickets = JsonSerializer.Deserialize<List<PermissionTicket>>(result);
             return permissionTickets;
-
         }
 
-        /// <inherited/>
-        public async Task<List<PermissionTicket>> findByResourceId(string resourceId, string token)
+        /// <inheritdoc/>
+        public async Task<List<PermissionTicket>> FindByResourceId(string resourceId, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -188,8 +186,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             return permissionTickets;
         }
 
-        /// <inherited/>
-        public async Task<List<PermissionTicket>> find(
+        /// <inheritdoc/>
+        public async Task<List<PermissionTicket>> Find(
             string resourceId,
             string scopeId,
             string owner,
@@ -229,8 +227,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             return permissionTickets;
         }
 
-        /// <inherited/>
-        public async Task<bool> update(PermissionTicket ticket, string token)
+        /// <inheritdoc/>
+        public async Task<bool> Update(PermissionTicket ticket, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -255,8 +253,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
         }
 
-        /// <inherited/>
-        public async Task<bool> delete(string ticketId, string token)
+        /// <inheritdoc/>
+        public async Task<bool> Delete(string ticketId, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 

@@ -16,6 +16,7 @@
 namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Util
 {
     using System;
+    using System.Globalization;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -29,7 +30,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Ut
     using HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation.Tokens;
 
 
-/// <summary>Extensions for HttpClient to handle OAuth 2.0 UMA.</summary>
+    /// <summary>Extensions for HttpClient to handle OAuth 2.0 UMA.</summary>
     public static class HttpClientExtensions
     {
         /// <summary>Sets the Bearer Token Head for UMA calls</summary>
@@ -49,7 +50,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Ut
             string? ticket = request.Ticket;
             PermissionTicketToken? permissionTicketToken = request.Permissions;
 
-            if (ticket == null && permissionTicketToken == null) {
+            if (ticket == null && permissionTicketToken == null)
+            {
                 throw new Exception("You must either provide a permission ticket or the permissions you want to request.");
             }
 
@@ -79,12 +81,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Ut
 
                     if (scopes != null && (scopes.Count > 0))
                     {
-                        value.Append("#");
+                        value.Append('#');
                         foreach (string scope in scopes)
                         {
-                            if (!value.ToString().EndsWith("#"))
+                            string val = value.ToString();
+                            if (!val.EndsWith("#"))
                             {
-                                value.Append(",");
+                                value.Append(',');
                             }
                             value.Append(scope);
                         }
@@ -93,24 +96,26 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Ut
                 }
             }
 
-            Metadata? metadata = request.Metadata;
+            RequestMetadata? metadata = request.Metadata;
 
             if (metadata != null)
             {
                 if (metadata.IncludeResourceName)
                 {
-                    paramDict.Add(metadata.IncludeResourceName.ToString(), "response_include_resource_name");
+                    paramDict.Add(metadata.IncludeResourceName.ToString(CultureInfo.InvariantCulture), "response_include_resource_name");
                 }
 
                 if (metadata.Limit > 0)
                 {
-                    paramDict.Add(metadata.Limit.ToString(), "response_permissions_limit");
+                    paramDict.Add(metadata.Limit.ToString(CultureInfo.InvariantCulture), "response_permissions_limit");
                 }
             }
 
-            HttpContent content = new FormUrlEncodedContent(paramDict);
-            content.Headers.Add(@"Content-Type", @"application/x-www-form-urlencoded");
-            return httpClient.PostAsync(uri, content);
+            using (HttpContent content = new FormUrlEncodedContent(paramDict))
+            {
+                content.Headers.Add(@"Content-Type", @"application/x-www-form-urlencoded");
+                return httpClient.PostAsync(uri, content);
+            }
         }
     }
 }

@@ -13,13 +13,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //-------------------------------------------------------------------------
-namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation
+namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Representation.Tokens
 {
     using System.Collections.Generic;
-    /// <summary> A class representing a UMA 2.0 Policy.</summary>
-    public class Policy : AbstractPolicy
+    using System.Text.Json.Serialization;
+
+    /// <summary>
+    /// Authorization for a given resource.
+    /// </summary>
+    public class ResourceAuthorization
     {
-        /// <summary>Gets or set the policy configuration.</summary>
-        public Dictionary<string, string> Config { get; set; } = new Dictionary<string,string>();
+        /// <summary>Gets the <cref name="Permission"/> permissions.</summary>
+        [JsonPropertyName("permissions")]
+        public List<Permission>? Permissions { get; } 
     }
 }

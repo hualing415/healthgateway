@@ -39,22 +39,23 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
         private ServerConfiguration? _serverConfiguration = null;
 
-        /// <inherited/>
+        /// <inheritdoc/>
         public ServerConfiguration ServerConfiguration {
             get {
                 if (_serverConfiguration == null)
                 {
-                    _serverConfiguration =  this.getServerConfiguration().Result;
+                    _serverConfiguration =  this.GetServerConfiguration().Result;
                 } 
                 return _serverConfiguration;
             }
         }
 
-        /// <summary>Creates an instance of a <cref name="ServerConfigurationDelegate"/>.</summary>
+        /// <summary>Initializes a new instance of the <cref name="ServerConfigurationResource"/> class.</summary>
         /// <param name="logger">The injected logger.</param>
         /// <param name="httpClientService">The injected httpClientService.</param>
         /// <param name="keycloakConfiguration">The injected keycloak configuration.</param>
-        public ServerConfigurationResource(ILogger<ServerConfigurationResource> logger,
+        public ServerConfigurationResource(
+            ILogger<ServerConfigurationResource> logger,
             IHttpClientService httpClientService,
             IKeycloakConfiguration keycloakConfiguration)
         {
@@ -65,13 +66,13 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
         /// <summary>Gets the UMA 2.0 Server Configuration from teh well-known Keycloak server end point.</summary>
         /// <returns>An instance of a <cref name="ServerConfiguration"/>.</returns>
-        private async Task<ServerConfiguration> getServerConfiguration()
+        private async Task<ServerConfiguration> GetServerConfiguration()
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
 
-            Uri configUri = KeycloakUriBuilder.buildUri(this.keycloakConfiguration, ServiceUrlConstants.AUTHZ_DISCOVERY_URL);
+            Uri configUri = KeycloakUriBuilder.BuildUri(this.keycloakConfiguration, ServiceUrlConstants.AUTHZ_DISCOVERY_URL);
 
             HttpResponseMessage response = await client.GetAsync(configUri).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)

@@ -21,7 +21,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Represent
     /// <summary>
     /// OAuth 2.0 UMA Resource. Information about a user protected resource. A uma Permission can be assigned to this entity.
     /// </summary>
-    public class Resource
+    public class ProtectedResource
     {
         /// <summary>The resource identifier</summary>
         [JsonPropertyName("_id")]

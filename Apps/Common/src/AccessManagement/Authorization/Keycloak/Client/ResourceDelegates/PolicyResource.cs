@@ -17,6 +17,7 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Net.Http;
     using System.Text.Json;
 
@@ -40,13 +41,12 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
 
         private readonly IServerConfigurationResource serverConfigurationDelegate;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationResource"/> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="PolicyResource"/> class.</summary>
         /// <param name="logger">The injected logger provider.</param>
         /// <param name="serverConfigurationDelegate">The UMA serverConfiguration delegate.</param>
         /// <param name="httpClientService">injected HTTP client service.</param>
-        public PolicyResource(ILogger<PermissionResource> logger,
+        public PolicyResource(
+            ILogger<PermissionResource> logger,
             IServerConfigurationResource serverConfigurationDelegate,
             HttpClientService httpClientService)
         {
@@ -55,8 +55,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             this.httpClientService = httpClientService;
         }
 
-        /// <inherited/>
-        public async Task<UmaPermission> create(string resourceId, UmaPermission permission, string token)
+        /// <inheritdoc/>
+        public async Task<UmaPermission> Create(string resourceId, UmaPermission permission, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -82,8 +82,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
         }
 
-        /// <inherited/>
-        public async Task<bool> update(UmaPermission permission, string token)
+        /// <inheritdoc/>
+        public async Task<bool> Update(UmaPermission permission, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -108,8 +108,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             }
         }
 
-        /// <inherited/>
-        public async Task<bool> delete(string permissionId, string token)
+        /// <inheritdoc/>
+        public async Task<bool> Delete(string permissionId, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
@@ -129,8 +129,9 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             return true;
         }
 
-        /// <inherited/>
-        public async Task<List<UmaPermission>> find(string resourceId,
+        /// <inheritdoc/>
+        public async Task<List<UmaPermission>> Find(
+                string resourceId,
                 string name,
                 string scope,
                 int firstResult,
@@ -148,8 +149,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             requestUrl = QueryHelpers.AddQueryString(requestUrl, "name", name);
             requestUrl = QueryHelpers.AddQueryString(requestUrl, "resource", resourceId);
             requestUrl = QueryHelpers.AddQueryString(requestUrl, "scope", scope);
-            requestUrl = QueryHelpers.AddQueryString(requestUrl, "first", firstResult.ToString());
-            requestUrl = QueryHelpers.AddQueryString(requestUrl, "max", maxResult.ToString());
+            requestUrl = QueryHelpers.AddQueryString(requestUrl, "first", firstResult.ToString(CultureInfo.InvariantCulture));
+            requestUrl = QueryHelpers.AddQueryString(requestUrl, "max", maxResult.ToString(CultureInfo.InvariantCulture));
 
             HttpResponseMessage response = await client.GetAsync(new Uri(requestUrl)).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
@@ -162,8 +163,8 @@ namespace HealthGateway.Common.AccessManagement.Authorization.Keycloak.Client.Re
             return umaPermissions;
         }
 
-        /// <inherited/>
-        public async Task<UmaPermission> findById(string id, string token)
+        /// <inheritdoc/>
+        public async Task<UmaPermission> FindById(string id, string token)
         {
             HttpClient client = this.httpClientService.CreateDefaultHttpClient();
 
